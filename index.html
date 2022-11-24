@@ -88,3 +88,127 @@
         </nav>
     <!--------------------------------------- TERMINA HEADER-------------------------------->
     </header>
+    <!--------------------------------------- INICIA MAIN ---------------------------------->
+    <!--------------------- INICIA VISTA PRINCIPAL / branch balance ------------------------>
+    <!------------------ ASIDE / BALANCE ------------------>
+    <section class="container pt-6 pl-6 pb-6 mr-6" id="aside">
+        <div class="tile is-ancestor">
+            <aside class="tile is-vertical is-3 is-parent">
+              <section class="box">
+                <h2 class="title mb-6">Balance</h2>
+                <div class="columns is-mobile is-vcentered">
+                    <p class="level-left is-size-5 pl-3">Ganancias</p>
+                    <p class="column has-text-right has-text-weight-medium has-text-success is-size-5" id="ganancias">+$0</p>
+                </div>
+                <div class="columns is-mobile is-vcentered">
+                    <p class="level-left is-size-5 pl-3">Gastos</p>
+                    <p class="column has-text-right has-text-weight-medium has-text-success is-size-5 has-text-danger" id="gastos">-$0</p>
+                </div>
+    
+                <div class="columns is-mobile is-vcentered">
+                    <p class="level-left is-size-4 pl-3 has-text-weight-normal">Total</p>
+                    <p class="column  has-text-right has-text-weight-medium is-size-5" id="balance-total">$0</p>
+                </div>
+              <!------------------- FIN BALANCE ----------------->
+              </section>
+              <!----------------- ASIDE / FILTROS ---------------->
+              <section class="box">
+                <div class="columns is-vcentered is-mobile">
+                        <h2 class="column is-size-3 has-text-weight-semibold mb-4">Filtros</h2>
+                       <div class="column has-text-right">
+                         <a href="#" id="btn-filtros" aria-label="Botón de filtros">Ocultar filtros</a>
+                       </div>
+                </div> 
+                <div id="filters">
+                    <article class="field">
+                        <label for="tipo" class="label">Tipo</label>
+                        <div class="control">
+                          <div class="select is-fullwidth">
+                            <select id="filtro-tipo>
+                              <option value="todos">Todos</option>
+                              <option value="gasto">Gasto</option>
+                              <option value="ganancia">Ganancia</option>
+                            </select>
+                          </div>
+                        </div>
+                      </article>
+                </div>
+                <article class="field">
+                    <label for="categoria" class="label pt-3">Categoría</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select id="filtro-categoria"></select>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="field">
+                    <label for="fecha" class="label">Desde</label>
+                    <div class="control">
+                      <input id="filtro-fecha" class="input" type="date" name="label">
+                    </div>
+                  </article> 
+                  <article class="field">
+                    <label for="ordenar" class="label">Ordenar por</label>
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select id="filtro-ordenar">
+                            <option value="a-z">A-Z</option>
+                            <option value="z-a">Z-A</option>
+                            <option value="mas-reciente">Más reciente</option>
+                            <option value="menos-reciente">Menos reciente</option>
+                            <option value="mayor-monto">Mayor monto</option>
+                            <option value="menor-monto">Menor monto</option>
+                          </select>
+                        </div>
+                      </div>
+                  </article> 
+         <!------------------- FIN FILTROS --------------->
+            </section>
+        <!------------------------------- TERMINA ASIDE ------------------------------------>
+            </aside>
+        <!------------------------------ INICIA OPERACIÓN -------------------------------->
+        <!-------- VISTA PRINCIPAL ---------->
+            <section class="column is-7-widescreen is-8-desktop">
+                <div class="box tile is-child pl-5">
+                  <div class="columns mb-4">
+                        <article class="column">
+                            <h2 class=" is-size-3 has-text-weight-semibold">Operaciones</h2>
+                        </article>
+                        <article class="column has-text-right-tablet">
+                            <button class="button is-primary " id="btn-operacion" aria-label="Botón para una nueva operación">+ Nueva operación</button>
+                        </article>
+                   </div>
+                   
+                   <div id="ver-sin-operaciones">
+                    <article class="my-5 py-5">
+                      <figure class="image mt-5">
+                        <img src="img/operaciones.png">
+                      </figure>
+                      <h4 class="title is-size-4 is-size-6-mobile has-text-centered mt-6">Sin resultados</h4>
+                      <p class="subtitle is-size-6 is-size-7-mobile has-text-centered">Cambia los filtros o agrega operaciones</p>
+                    </article>
+                  </div>
+        <!----------------------- NUEVA OPERACIÇON -------------------------->
+                <div class="is-hidden"id="tabla-operaciones">
+                    <article class="columns has-text-weight-semibold is-hidden-mobile">
+                      <div class="column is-3">Descripción</div>
+                      <div class="column is-3">Categorías</div>
+                      <div class="column is-2">Fecha</div>
+                      <div class="column is-2">Monto</div>
+                      <div class="column is-2 has-text-right">Acciones</div>
+                    </article>
+                    <div id="escribir-operacion"></div>
+        <!--------------- FIN NUEVA OPERACIÓN ----------->
+                </div>
+        <!------------------------------ FIN OPERACIÓN -------------------------------------->
+                </div>
+              </section>
+        <!------------- TERMINA VISTA PRINCIPAL / branch balance---------------------------->
+            </div>
+        </section>
+        <p></p>
+
+        
+     <script src="main.js"></script>
+  </body>
+</html>
