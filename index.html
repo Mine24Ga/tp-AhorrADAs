@@ -1,441 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!----------------------------------- AUTHOR TAGS ------------------------------------>
-    <meta name="author" content="Minerva Guanipa" />
-    <meta name="description"
-        content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
-    <meta name="keywords" content="Aplicación registro de gastos y ganancias." />
-    <link rel="me" href="mailto:minerva.guanipa1998@gmail.com" />
-    <link rel="me" href="sms:+541137947183" />
-    <link rel="archives" href="https://www.linkedin.com/in/minerva-guanipa/" />
-    <!---------------------------------- GEO TAGS ----------------------------------------->
-    <meta name="ICBM" content="34°38′00″S 58°25′00″O" />
-    <meta name="geo.position" content="34°38′00″S 58°25′00″O" />
-    <meta name="geo.region" content="AR-S" />
-    <!-------------------------------------- SOCIAL TAGS ---------------------------------->
-    <meta property="og:title" content="AhorrADAs" />
-    <meta property="og:description"
-        content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
-    <meta property="og:type" content="article" />
-    <meta property="og:site name" content="AhorrADAs" />
-    <meta property="og:url" content="#" />
-    <meta property="og:image" content="#" />
-    <!------------------------------------------ TWITTER ------------------------------------>
-    <meta property="twitter:card" content="summary" />
-    <meta property="twitter:url" content="#" />
-    <meta property="twitter:title" content="AhorrADAs" />
-    <meta property="twitter:description"
-        content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
-    <meta property="twitter:image"
-        content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
-    <!-------------------------------- LINK FAVICON ------------------------------------>
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
-    <!-------------------------------- LINK CSS ------------------------------------------->
-    <link rel="stylesheet" href="style.css" />
-    <!--------------------------------- LINK BULMA ---------------------------------------->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <!--------------------------------- LINK ICONS ----------------------------------------->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>AhorrADAs</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!----------------------------------- AUTHOR TAGS ------------------------------------>
+  <meta name="author" content="Minerva Guanipa" />
+  <meta name="description"
+    content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
+  <meta name="keywords" content="Aplicación registro de gastos y ganancias." />
+  <link rel="me" href="mailto:minerva.guanipa1998@gmail.com" />
+  <link rel="me" href="sms:+541137947183" />
+  <link rel="archives" href="https://www.linkedin.com/in/minerva-guanipa/" />
+  <!---------------------------------- GEO TAGS ----------------------------------------->
+  <meta name="ICBM" content="34°38′00″S 58°25′00″O" />
+  <meta name="geo.position" content="34°38′00″S 58°25′00″O" />
+  <meta name="geo.region" content="AR-S" />
+  <!-------------------------------------- SOCIAL TAGS ---------------------------------->
+  <meta property="og:title" content="AhorrADAs" />
+  <meta property="og:description"
+    content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site name" content="AhorrADAs" />
+  <meta property="og:url" content="#" />
+  <meta property="og:image" content="#" />
+  <!------------------------------------------ TWITTER ------------------------------------>
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:url" content="#" />
+  <meta property="twitter:title" content="AhorrADAs" />
+  <meta property="twitter:description"
+    content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
+  <meta property="twitter:image"
+    content="Es una aplicación que permite mantener el registro de gastos y ganancias y un orden de las mismas." />
+  <!-------------------------------- LINK FAVICON ------------------------------------>
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+  <!-------------------------------- LINK CSS ------------------------------------------->
+  <link rel="stylesheet" href="style.css" />
+  <!--------------------------------- LINK BULMA ---------------------------------------->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <!--------------------------------- LINK ICONS ----------------------------------------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>AhorrADAs</title>
 </head>
 
 <body>
-    <!------------------------------ INICIA HEADER / branch main ------------------------------>
-    <header>
-        <nav class="navbar has-background-primary" role="navigation" aria-label="main  navigation">
-            <section class="navbar-brand">
-                <a class="navbar-item" href="#">
-                    <h1 class="title is-size-2 has-text-white">
-                        <i class="fa-solid fa-wallet"></i>
-                        AhorrADAs
-                    </h1>
-                </a>
-                <a role="button" class="navbar-burger is-align-self-center" id="navbar-burger" aria-label="menu"
-                    aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </section>
-            <section id="navbar-menu" class="navbar-menu">
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary">
-                                <i class="fas fa-chart-line mr-1" aria-hidden="true"></i>
-                                Balance
-                            </a>
-                            <a class="button is-primary">
-                                <i class="fa-solid fa-tags mr-1"></i>
-                                Categorías
-                            </a>
-                            <a class="button is-primary">
-                                <i class="fa-solid fa-chart-pie mr-1"></i>
-                                Reportes
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </nav>
-    <!--------------------------------------- TERMINA HEADER-------------------------------->
-    </header>
-    <!--------------------------------------- INICIA MAIN ---------------------------------->
-    <!--------------------- INICIA VISTA PRINCIPAL / branch balance ------------------------>
-    <!------------------ ASIDE / BALANCE ------------------>
-    <section class="container pt-6 pl-6 pb-6 mr-6" id="section-balance">
-        <div class="tile is-ancestor">
-            <aside class="tile is-vertical is-3 is-parent">
-              <section class="box">
-                <h2 class="title mb-6">Balance</h2>
-                <div class="columns is-mobile is-vcentered">
-                    <p class="level-left is-size-5 pl-3">Ganancias</p>
-                    <p class="column has-text-right has-text-weight-medium has-text-success is-size-5" id="ganancias" id="balance-gain" >+$0</p>
-                </div>
-                <div class="columns is-mobile is-vcentered">
-                    <p class="level-left is-size-5 pl-3">Gastos</p>
-                    <p class="column has-text-right has-text-weight-medium has-text-success is-size-5 has-text-danger" id="gastos" id="balance-expense" >-$0</p>
-                </div>
-    
-                <div class="columns is-mobile is-vcentered">
-                    <p class="level-left is-size-4 pl-3 has-text-weight-normal">Total</p>
-                    <p class="column  has-text-right has-text-weight-medium is-size-5" id="balance-total" id="balance-total" >$0</p>
-                </div>
-              <!------------------- FIN BALANCE ----------------->
-              </section>
-              <!----------------- ASIDE / FILTROS ---------------->
-              <section class="box">
-                <div class="columns is-vcentered is-mobile">
-                        <h2 class="column is-size-3 has-text-weight-semibold mb-4">Filtros</h2>
-                       <div class="column has-text-right">
-                         <a href="#" id="btn-hidden-filters" aria-label="Botón de ocultar filtros">Ocultar filtros</a>
-                       </div>
-                </div> 
-                <div id="filters">
-                    <article class="field">
-                        <label for="filter-type" class="label">Tipo</label>
-                        <div class="control">
-                          <div class="select is-fullwidth">
-                            <select id="filter-type>
-                              <option value="todos">Todos</option>
-                              <option value="gasto">Gasto</option>
-                              <option value="ganancia">Ganancia</option>
-                            </select>
-                          </div>
-                        </div>
-                      </article>
-                </div>
-                <article class="field">
-                    <label for="filter-category" class="label pt-3">Categoría</label>
-                    <div class="control">
-                      <div class="select is-fullwidth">
-                        <select id="filter-category"></select>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="field">
-                    <label for="filter-date" class="label">Desde</label>
-                    <div class="control">
-                      <input id="filter-date" class="input" type="date" name="label">
-                    </div>
-                  </article> 
-                  <article class="field">
-                    <label for="filter-organize" class="label">Ordenar por</label>
-                      <div class="control">
-                        <div class="select is-fullwidth">
-                          <select id="filter-organize">
-                            <option value="a-z">A-Z</option>
-                            <option value="z-a">Z-A</option>
-                            <option value="mas-reciente">Más reciente</option>
-                            <option value="menos-reciente">Menos reciente</option>
-                            <option value="mayor-monto">Mayor monto</option>
-                            <option value="menor-monto">Menor monto</option>
-                          </select>
-                        </div>
-                      </div>
-                  </article> 
-         <!------------------- FIN FILTROS --------------->
-            </section>
-        <!------------------------------- TERMINA ASIDE ------------------------------------>
-            </aside>
-        <!------------------------------ INICIA OPERACIÓN -------------------------------->
-        <!---------------------------------- VISTA PRINCIPAL ------------------------------>
-            <section class="column is-7-widescreen is-8-desktop">
-                <div class="box tile is-child pl-5">
-                  <div class="columns mb-4">
-                        <article class="column">
-                            <h2 class=" is-size-3 has-text-weight-semibold">Operaciones</h2>
-                        </article>
-                        <article class="column has-text-right-tablet">
-                            <button class="button is-primary " id="btn-new-operation" aria-label="Botón para una nueva operación">+ Nueva operación</button>
-                        </article>
-                   </div>
-                   
-                   <div id="no-operation">
-                    <article class="my-5 py-5">
-                      <figure class="image mt-5">
-                        <img src="img/operaciones.png">
-                      </figure>
-                      <h4 class="title is-size-4 is-size-6-mobile has-text-centered mt-6">Sin resultados</h4>
-                      <p class="subtitle is-size-6 is-size-7-mobile has-text-centered">Cambia los filtros o agrega operaciones</p>
-                    </article>
-                  </div>
-        <!----------------------- MOSTRAR TABLA CON OPERACIONES -------------------------->
-                <div class="hidden"id="operations-table"> <!--acomodar-->
-                    <article class="columns has-text-weight-semibold is-hidden-mobile">
-                      <div class="column is-3">Descripción</div>
-                      <div class="column is-3">Categorías</div>
-                      <div class="column is-2">Fecha</div>
-                      <div class="column is-2">Monto</div>
-                      <div class="column is-2 has-text-right">Acciones</div>
-                    </article>
-                    <div id="create operation"></div>
-        <!---------------------- FIN  ------------------------------------------------------->
-                </div>
-        <!------------------------------ FIN OPERACIÓN -------------------------------------->
-                </div>
-              </section>
-        <!------------- TERMINA VISTA PRINCIPAL / branch balance---------------------------->
+  <!------------------------------ INICIA HEADER / branch main ------------------------------>
+  <header>
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main  navigation">
+      <section class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <h1 class="title is-size-2 has-text-white">
+            <i class="fa-solid fa-wallet"></i>
+            AhorrADAs
+          </h1>
+        </a>
+        <a role="button" class="navbar-burger is-align-self-center" id="navbar-burger" aria-label="menu"
+          aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </section>
+      <section id="navbar-menu" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <i class="fas fa-chart-line mr-1" aria-hidden="true"></i>
+                Balance
+              </a>
+              <a class="button is-primary">
+                <i class="fa-solid fa-tags mr-1"></i>
+                Categorías
+              </a>
+              <a class="button is-primary">
+                <i class="fa-solid fa-chart-pie mr-1"></i>
+                Reportes
+              </a>
             </div>
+          </div>
+        </div>
+      </section>
+    </nav>
+    <!--------------------------------------- TERMINA HEADER-------------------------------->
+  </header>
+  <!--------------------------------------- INICIA MAIN ---------------------------------->
+  <!--------------------- INICIA VISTA PRINCIPAL / branch balance ------------------------>
+  <!------------------ ASIDE / BALANCE ------------------>
+  <section class="container pt-6 pl-6 pb-6 mr-6" id="section-balance">
+    <div class="tile is-ancestor">
+      <aside class="tile is-vertical is-3 is-parent">
+        <section class="box">
+          <h2 class="title mb-6">Balance</h2>
+          <div class="columns is-mobile is-vcentered">
+            <p class="level-left is-size-5 pl-3">Ganancias</p>
+            <p class="column has-text-right has-text-weight-medium has-text-success is-size-5" id="ganancias"
+              id="balance-gain">+$0</p>
+          </div>
+          <div class="columns is-mobile is-vcentered">
+            <p class="level-left is-size-5 pl-3">Gastos</p>
+            <p class="column has-text-right has-text-weight-medium has-text-success is-size-5 has-text-danger"
+              id="gastos" id="balance-expense">-$0</p>
+          </div>
+
+          <div class="columns is-mobile is-vcentered">
+            <p class="level-left is-size-4 pl-3 has-text-weight-normal">Total</p>
+            <p class="column  has-text-right has-text-weight-medium is-size-5" id="balance-total" id="balance-total">$0
+            </p>
+          </div>
+          <!------------------- FIN BALANCE ----------------->
         </section>
-        <!--------------------------- INICIA SECCIÓN NUEVA OPERACIÓN -------------------------->
-        <!--------------------- CREAR NUEVA OPERACIÓN /branch nueva operacion --------------->
-        <section class="container pt-5 hidden" id="section-new">
-          <article class="columns">
-            <div class="column is-8 is-offset-2">
-              <div class="box">
-               <h2 class=" is-size-2 has-text-weight-bold">Nueva operación</h2>
-               <article class="field mt-6">
-                 <label for="input-description" class="label">Descripción</label>
-                 <input class="input" id="input-description" type="text" placeholder="Ingrese descripción">
-               </article>
-               <article class="field">
-                 <label for="input-amount" class="label">Monto</label>
-                 <input class="input" id="input-amount" type="number" placeholder="Ingrese monto">
-               </article>
-               <article class="field">
-                <label for="input-type" class="label">Tipo</label>
-                <div class="control">
-                  <div class="select is-fullwidth">
-                    <select id="input-type">
-                      <option value="gasto">Gasto</option>
-                      <option value="ganancia">Ganancia</option>
-                    </select>
-                  </div>
+        <!----------------- ASIDE / FILTROS ---------------->
+        <section class="box">
+          <div class="columns is-vcentered is-mobile">
+            <h2 class="column is-size-3 has-text-weight-semibold mb-4">Filtros</h2>
+            <div class="column has-text-right">
+              <a href="#" id="btn-hidden-filters" aria-label="Botón de ocultar filtros">Ocultar filtros</a>
+            </div>
+          </div>
+          <div id="filters">
+            <article class="field">
+              <label for="filter-type" class="label">Tipo</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="filter-type>
+                              <option value=" todos">Todos</option>
+                    <option value="gasto">Gasto</option>
+                    <option value="ganancia">Ganancia</option>
+                  </select>
                 </div>
-              </article>
-              <article class="field">
-                <label for="category-select" class="label">Categoría</label>
-                <div class="control">
-                  <div class="select is-fullwidth">
-                    <select id="category-select">
-                    </select>
-                  </div>
-                </div>
-              </article>
-              <article class="field">
-                <label for="input-date" class="label">Fecha</label>
-                <input class="input " id="input-date" type="date" name="label">         
-              </article>
-              <article class="field is-grouped is-grouped-right">
-                <p class="control">
-                  <a class="button is-light " id="btn-cancel" aria-label="Botón de cancelar añadir nueva operación">Cancelar</a>
-                </p>
-                <p class="control">
-                  <a class="button is-primary" id="btn-add" aria-label="Botón de añadir nueva operación">Agregar</a>
-                </p>
-              </article>
+              </div>
+            </article>
+          </div>
+          <article class="field">
+            <label for="filter-category" class="label pt-3">Categoría</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select id="filter-category"></select>
               </div>
             </div>
           </article>
-      <!----------------------------- TERMINA CREAR NUEVA OPERACIÓN --------------------------->
+          <article class="field">
+            <label for="filter-date" class="label">Desde</label>
+            <div class="control">
+              <input id="filter-date" class="input" type="date" name="label">
+            </div>
+          </article>
+          <article class="field">
+            <label for="filter-organize" class="label">Ordenar por</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select id="filter-organize">
+                  <option value="a-z">A-Z</option>
+                  <option value="z-a">Z-A</option>
+                  <option value="mas-reciente">Más reciente</option>
+                  <option value="menos-reciente">Menos reciente</option>
+                  <option value="mayor-monto">Mayor monto</option>
+                  <option value="menor-monto">Menor monto</option>
+                </select>
+              </div>
+            </div>
+          </article>
+          <!------------------- FIN FILTROS --------------->
         </section>
-      <!----------------------- INICIA SECCION EDITAR OPERACIÓN ------------------------------>
-          <section class="container pt-5 hidden" id="section-edit">
-            <div class="columns">
-              <div class="column is-8 is-offset-2">
-                <article class="box">
-                 <h2 class=" is-size-2 has-text-weight-bold">Editar Operación</h2>
-                 <article class="field mt-6">
-                   <label for="input-description-edit" class="label">Descripción</label>
-                   <input class="input" id="input-editar-descripcion" type="text" placeholder="Ingrese descripción">
-                 </article>
-                 <article class="field">
-                   <label for="input-amount-edit" class="label">Monto</label>
-                   <input class="input " id="input-editar-monto" type="number" placeholder="Ingrese monto">
-                 </article>
-                 <article class="field">
-                  <label for="input-type-edit" class="label">Tipo</label>
-                  <div class="control" >
-                    <div class="select is-fullwidth">
-                      <select id="input-editar-tipo">
-                        <option value="gasto">Gasto</option>
-                        <option value="ganancia">Ganancia</option>
-                      </select>
-                    </div>
-                  </div>
-                  </article>
-                <article class="field">
-                  <label for="category-select-edit" class="label">Categoría</label>
-                  <div class="control">
-                    <div class="select is-fullwidth">
-                      <select id="category-select-edit"></select>
-                    </div>
-                  </div>
-                </article>
-                <article class="field">
-                  <label for="input-date-edit" class="label">Fecha</label>
-                  <input class="input" id="input-date-edit" type="date" name="label">         
-                </article>
-      
-                <article class="field is-grouped is-grouped-right">
-                  <p class="control">
-                    <button class="button is-light " id="btn-cancel-edit" aria-label="Botón de cancelar editar nueva operación">Cancelar</button>
-                  </p>
-                  <p class="control">
-                    <button class="button button is-primary " id="btn-edit" aria-label="Botón de editar nueva operación">Editar</button>
-                  </p>
-                </article>
+        <!------------------------------- TERMINA ASIDE ------------------------------------>
+      </aside>
+      <!------------------------------ INICIA OPERACIÓN -------------------------------->
+      <!---------------------------------- VISTA PRINCIPAL ------------------------------>
+      <section class="column is-7-widescreen is-8-desktop">
+        <div class="box tile is-child pl-5">
+          <div class="columns mb-4">
+            <article class="column">
+              <h2 class=" is-size-3 has-text-weight-semibold">Operaciones</h2>
+            </article>
+            <article class="column has-text-right-tablet">
+              <button class="button is-primary " id="btn-new-operation" aria-label="Botón para una nueva operación">+
+                Nueva operación</button>
+            </article>
+          </div>
+
+          <div id="no-operation">
+            <article class="my-5 py-5">
+              <figure class="image mt-5">
+                <img src="img/operaciones.png">
+              </figure>
+              <h4 class="title is-size-4 is-size-6-mobile has-text-centered mt-6">Sin resultados</h4>
+              <p class="subtitle is-size-6 is-size-7-mobile has-text-centered">Cambia los filtros o agrega operaciones
+              </p>
+            </article>
+          </div>
+          <!----------------------- MOSTRAR TABLA CON OPERACIONES -------------------------->
+          <div class="hidden" id="operations-table">
+            <!--acomodar-->
+            <article class="columns has-text-weight-semibold is-hidden-mobile">
+              <div class="column is-3">Descripción</div>
+              <div class="column is-3">Categorías</div>
+              <div class="column is-2">Fecha</div>
+              <div class="column is-2">Monto</div>
+              <div class="column is-2 has-text-right">Acciones</div>
+            </article>
+            <div id="create operation"></div>
+            <!---------------------- FIN  ------------------------------------------------------->
+          </div>
+          <!------------------------------ FIN OPERACIÓN -------------------------------------->
+        </div>
+      </section>
+      <!------------- TERMINA VISTA PRINCIPAL / branch balance---------------------------->
+    </div>
+  </section>
+  <!--------------------------- INICIA SECCIÓN NUEVA OPERACIÓN -------------------------->
+  <!--------------------- CREAR NUEVA OPERACIÓN /branch nueva operacion --------------->
+  <section class="container pt-5 hidden" id="section-new">
+    <article class="columns">
+      <div class="column is-8 is-offset-2">
+        <div class="box">
+          <h2 class=" is-size-2 has-text-weight-bold">Nueva operación</h2>
+          <article class="field mt-6">
+            <label for="input-description" class="label">Descripción</label>
+            <input class="input" id="input-description" type="text" placeholder="Ingrese descripción">
+          </article>
+          <article class="field">
+            <label for="input-amount" class="label">Monto</label>
+            <input class="input" id="input-amount" type="number" placeholder="Ingrese monto">
+          </article>
+          <article class="field">
+            <label for="input-type" class="label">Tipo</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select id="input-type">
+                  <option value="gasto">Gasto</option>
+                  <option value="ganancia">Ganancia</option>
+                </select>
+              </div>
+            </div>
+          </article>
+          <article class="field">
+            <label for="category-select" class="label">Categoría</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select id="category-select">
+                </select>
+              </div>
+            </div>
+          </article>
+          <article class="field">
+            <label for="input-date" class="label">Fecha</label>
+            <input class="input " id="input-date" type="date" name="label">
+          </article>
+          <article class="field is-grouped is-grouped-right">
+            <p class="control">
+              <a class="button is-light " id="btn-cancel"
+                aria-label="Botón de cancelar añadir nueva operación">Cancelar</a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" id="btn-add" aria-label="Botón de añadir nueva operación">Agregar</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </article>
+    <!----------------------------- TERMINA CREAR NUEVA OPERACIÓN --------------------------->
+  </section>
+  <!----------------------- INICIA SECCION EDITAR OPERACIÓN ------------------------------>
+  <section class="container pt-5 hidden" id="section-edit">
+    <div class="columns">
+      <div class="column is-8 is-offset-2">
+        <article class="box">
+          <h2 class=" is-size-2 has-text-weight-bold">Editar Operación</h2>
+          <article class="field mt-6">
+            <label for="input-description-edit" class="label">Descripción</label>
+            <input class="input" id="input-editar-descripcion" type="text" placeholder="Ingrese descripción">
+          </article>
+          <article class="field">
+            <label for="input-amount-edit" class="label">Monto</label>
+            <input class="input " id="input-editar-monto" type="number" placeholder="Ingrese monto">
+          </article>
+          <article class="field">
+            <label for="input-type-edit" class="label">Tipo</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select id="input-editar-tipo">
+                  <option value="gasto">Gasto</option>
+                  <option value="ganancia">Ganancia</option>
+                </select>
+              </div>
+            </div>
+          </article>
+          <article class="field">
+            <label for="category-select-edit" class="label">Categoría</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select id="category-select-edit"></select>
+              </div>
+            </div>
+          </article>
+          <article class="field">
+            <label for="input-date-edit" class="label">Fecha</label>
+            <input class="input" id="input-date-edit" type="date" name="label">
+          </article>
+
+          <article class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button is-light " id="btn-cancel-edit"
+                aria-label="Botón de cancelar editar nueva operación">Cancelar</button>
+            </p>
+            <p class="control">
+              <button class="button button is-primary " id="btn-edit"
+                aria-label="Botón de editar nueva operación">Editar</button>
+            </p>
+          </article>
+        </article>
+      </div>
+    </div>
+    <!------------------------ TERMINA SECCION EDITAR OPERACIÓN -------------------------->
+  </section>
+  <!-------------------------------------------------------------------------------- INICIA SECCIÓN CATEGORÍA -------------------------------------------------------------->
+  <section class="container pt-5 hidden" id="section-category">
+    <div class="columns is-multiline">
+      <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
+        <article class="box">
+          <h2 class=" is-size-2 has-text-weight-bold">Categorías</h2>
+          <label class="label mt-6" for="input-category">Nombre</label>
+          <article class="field is-grouped">
+            <div class="control is-expanded">
+              <input class="input" type="text" name="" id="input-category">
+            </div>
+            <div class="control">
+              <button class="button button is-primary" id="btn-add-category" aria-label="Botón para nueva categoría">
+                Agregar
+              </button>
+            </div>
+          </article>
+          <article class="mt-6" id="categories-list">
+            <div class="mb-3">
+              <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                  <span class="tag button is-primary is-light">Comida</span>
+                </div>
+                <article class="column is-narrow has-text">
+                  <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
+                  <a href="#" class="is-size-7 delete-primary">Eliminar</a>
+                  <p></p>
                 </article>
               </div>
             </div>
-         <!------------------------ TERMINA SECCION EDITAR OPERACIÓN -------------------------->
-          </section>
-        <!-------------------------------------------------------------------------------- INICIA SECCIÓN CATEGORÍA -------------------------------------------------------------->
-          <section class="container pt-5 hidden" id="section-category">
-            <div class="columns is-multiline">
-              <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
-                <article class="box">
-                  <h2 class=" is-size-2 has-text-weight-bold">Categorías</h2>
-                  <label class="label mt-6" for="input-category">Nombre</label>
-                  <article class="field is-grouped">
-                    <div class="control is-expanded">
-                      <input class="input" type="text" name="" id="input-category">
-                    </div>
-                    <div class="control">
-                      <button class="button button is-primary" id="btn-add-category"  aria-label="Botón para nueva categoría">
-                        Agregar
-                      </button>
-                    </div>
-                  </article>
-                  <article class="mt-6" id="categories-list">
-                    <div class="mb-3">
-                      <div class="columns is-vcentered is-mobile">
-                        <div class="column">
-                          <span class="tag button is-primary is-light">Comida</span>
-                        </div>
-                        <article class="column is-narrow has-text">
-                          <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
-                          <a href="#" class="is-size-7 delete-primary">Eliminar</a>
-                          <p></p>
-                        </article>
-                      </div>
-                    </div>
-                    <article class="mb-3">
-                      <div class="columns is-vcentered is-mobile">
-                       <div class="column">
-                           <span class="tag button is-primary is-light">Servicios</span>
-                       </div>
-                       <article class="column is-narrow has-text">
-                           <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
-                           <a href="#" class="is-size-7 delete-primary">Eliminar</a>
-                           <p></p>
-                       </article>
-                      </div>
-                    </article>
-                    <article class="mb-3">
-                      <div class="columns is-vcentered is-mobile">
-                        <div class="column">
-                           <span class="tag button is-primary is-light">Salidas</span>
-                        </div>
-                        <article class="column is-narrow has-text">
-                           <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
-                           <a href="#" class="is-size-7 delete-primary">Eliminar</a>
-                           <p></p>
-                       </article>
-                      </div>
-                    </article>
-                    <article class="mb-3">
-                      <div class="columns is-vcentered is-mobile">
-                        <div class="column">
-                            <span class="tag button is-primary is-light">Educación</span>
-                        </div>
-                        <article class="column is-narrow has-text">
-                            <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
-                            <a href="#" class="is-size-7 delete-primary">Eliminar</a>
-                            <p></p>
-                        </article>
-                      </div>
-                    </article>
-                    <article class="mb-3">
-                      <div class="columns is-vcentered is-mobile">
-                        <div class="column">
-                            <span class="tag button is-primary is-light">Transporte</span>
-                        </div>
-                        <article class="column is-narrow has-text">
-                            <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
-                            <a href="#" class="is-size-7 delete-primary">Eliminar</a>
-                            <p></p>
-                        </article>
-                      </div>
-                    </article>
-                    <article class="mb-3">
-                      <div class="columns is-vcentered is-mobile">
-                        <div class="column">
-                            <span class="tag button is-primary is-light">Trabajo</span>
-                        </div>
-                        <article class="column is-narrow has-text">
-                            <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
-                            <a href="#" class="is-size-7 delete-primary">Eliminar</a>
-                            <p></p>
-                        </article>
-                      </div>
-                    </article>
-                  </article>
-                  </article>
+            <article class="mb-3">
+              <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                  <span class="tag button is-primary is-light">Servicios</span>
                 </div>
+                <article class="column is-narrow has-text">
+                  <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
+                  <a href="#" class="is-size-7 delete-primary">Eliminar</a>
+                  <p></p>
+                </article>
               </div>
-        </section>
-    <!--------------------------------------------------------------------------- SESIÓN EDITAR CATEGORIA ------------------------------------------------------------------------>
-              <section class="container pt-5 hidden" id="edit-category">
-                <div class="columns is-multiline">
-                  <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
-                    <article class="box">          
-                      <h2 class="is-size-2 has-text-weight-bold">Editar categoría</h2>
-                      <label class="label mt-6" for="input-edit-category">Nombre</label>
-                      <article class="field is-grouped">
-                        <div class="control is-expanded">
-                            <input class="input" type="text" name="name" id="input-edit-category">
-                        </div>              
-                      </article>
-                      <article class="field is-grouped is-grouped-right">
-                        <div class="control">
-                          <a class="button is-light " id="btn-cancel-edit-category" aria-label="Botón para cancelar la edición de la categoría">
-                            Cancelar</a>
-                        </div>
-                        <div class="control">
-                          <a class="button is-primary" id="btn-edit-category" aria-label="Botón para editar la categoría">
-                            Editar
-                          </a>
-                        </div>
-                      </article>
-                    </article>
-                  </div>
+            </article>
+            <article class="mb-3">
+              <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                  <span class="tag button is-primary is-light">Salidas</span>
                 </div>
-              </section>
-     <!------------------------------------------------------------------------------------- TERNINA SECCIÓN CATEGORIA ------------------------------------------------------------>   
-      
+                <article class="column is-narrow has-text">
+                  <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
+                  <a href="#" class="is-size-7 delete-primary">Eliminar</a>
+                  <p></p>
+                </article>
+              </div>
+            </article>
+            <article class="mb-3">
+              <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                  <span class="tag button is-primary is-light">Educación</span>
+                </div>
+                <article class="column is-narrow has-text">
+                  <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
+                  <a href="#" class="is-size-7 delete-primary">Eliminar</a>
+                  <p></p>
+                </article>
+              </div>
+            </article>
+            <article class="mb-3">
+              <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                  <span class="tag button is-primary is-light">Transporte</span>
+                </div>
+                <article class="column is-narrow has-text">
+                  <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
+                  <a href="#" class="is-size-7 delete-primary">Eliminar</a>
+                  <p></p>
+                </article>
+              </div>
+            </article>
+            <article class="mb-3">
+              <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                  <span class="tag button is-primary is-light">Trabajo</span>
+                </div>
+                <article class="column is-narrow has-text">
+                  <a href="#" class="mr-4 is-size-7 edit-primary">Editar</a>
+                  <a href="#" class="is-size-7 delete-primary">Eliminar</a>
+                  <p></p>
+                </article>
+              </div>
+            </article>
+          </article>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!--------------------------------------------------------------------------- SESIÓN EDITAR CATEGORIA ------------------------------------------------------------------------>
+  <section class="container pt-5 hidden" id="edit-category">
+    <div class="columns is-multiline">
+      <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
+        <article class="box">
+          <h2 class="is-size-2 has-text-weight-bold">Editar categoría</h2>
+          <label class="label mt-6" for="input-edit-category">Nombre</label>
+          <article class="field is-grouped">
+            <div class="control is-expanded">
+              <input class="input" type="text" name="name" id="input-edit-category">
+            </div>
+          </article>
+          <article class="field is-grouped is-grouped-right">
+            <div class="control">
+              <a class="button is-light " id="btn-cancel-edit-category"
+                aria-label="Botón para cancelar la edición de la categoría">
+                Cancelar</a>
+            </div>
+            <div class="control">
+              <a class="button is-primary" id="btn-edit-category" aria-label="Botón para editar la categoría">
+                Editar
+              </a>
+            </div>
+          </article>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!------------------------------------------------------------------------------------- TERNINA SECCIÓN CATEGORIA ------------------------------------------------------------>
+  <!---------------------------------------------------------------------- INICIA SESIÓN REPORTES ------------------------------------------------------------------------->
+  <section class="container pt-5 hidden" id="section-reports">
+    <div class="columns is-multiline">
+      <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
+        <div class="box">
+          <h1 class="is-size-2 has-text-weight-bold">Reportes</h1>
+          <!----------- SIN REPORTES -------------------->
+          <article class="field" id="no-reports">
+            <div class="my-5 py-5">
+              <figure class="image mt-5">
+                <img src="./img/reportes.png" alt="no-reports">
+              </figure>
+            </div>
+            <div class="column is-align-items-center">
+              <h4 class="title is-size-4 is-size-6-mobile has-text-centered">Operaciones insuficientes</h4>
+              <p class="subtitle is-size-6 is-size-7-mobile has-text-centered">Prueba agregando más operaciones</p>
+            </div>
+            <!------------ FIN SIN REPORTES ------------------->
+          </article>
+          <!---------------- CON REPORTES -------------------->
+          <article class="hidden" id="with-reports">
+            <!--------- RESUMEN ------------->
+            <div class="section mb-5" id="report-list">
+              <h2 class="title is-size-4 mb-5 pb-4">Resumen</h2>
+              <div id="report-summary"></div>
+            </div>
+            <!----- TOTALES POR CATEGORIA ----->
+            <div class="section mb-5">
+              <h2 class="title is-size-4 mb-5 pb-4">Totales por categoría</h2>
+              <div class="columns has-text-weight-medium is-mobile mb-5">
+                <div class="column">Categoría</div>
+                <div class="column green-cero">Ganancias</div>
+                <div class="column red-cero">Gastos</div>
+                <div class="column">Balance</div>
+              </div>
+              <div id="total-category-reports"></div>
+            </div>
+            <!------ TOTALES POR MES --------->
+            <div class="section mb-5" id="total-month">
+              <h2 class="title is-size-4 mb-5 pb-4">Totales por mes</h2>
+              <div class="columns has-text-weight-medium is-mobile mb-5">
+                <div class="column">Mes</div>
+                <div class="column green-cero">Ganancias</div>
+                <div class="column red-cero">Gastos</div>
+                <div class="column">Balance</div>
+              </div>
+              <div id="total-month-reports"></div>
+            </div>
+        <!------- FIN CON REPORTE -------->
+          </article>
+        <!----------------------------------------------------------- TERMINA SESIÓN REPORTES --------------------------------------------------------------->
+        </div>
+      </div>
+    </div>
+  </section>
 
-       
-        
-     <script src="main.js"></script>
-  </body>
+
+
+
+  <script src="main.js"></script>
+</body>
+
 </html>
