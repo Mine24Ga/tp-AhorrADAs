@@ -70,15 +70,15 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary">
+              <a class="button is-primary" id="btn-balance">
                 <i class="fas fa-chart-line mr-1" aria-hidden="true"></i>
                 Balance
               </a>
-              <a class="button is-primary">
+              <a class="button is-primary" id="btn-categories">
                 <i class="fa-solid fa-tags mr-1"></i>
                 Categorías
               </a>
-              <a class="button is-primary">
+              <a class="button is-primary" id="btn-reports" onclick="generateReport()">
                 <i class="fa-solid fa-chart-pie mr-1"></i>
                 Reportes
               </a>
@@ -99,18 +99,18 @@
           <h2 class="title mb-6">Balance</h2>
           <div class="columns is-mobile is-vcentered">
             <p class="level-left is-size-5 pl-3">Ganancias</p>
-            <p class="column has-text-right has-text-weight-medium has-text-success is-size-5" id="ganancias"
+            <p class="column has-text-right has-text-weight-medium has-text-success is-size-5" 
               id="balance-gain">+$0</p>
           </div>
           <div class="columns is-mobile is-vcentered">
             <p class="level-left is-size-5 pl-3">Gastos</p>
             <p class="column has-text-right has-text-weight-medium has-text-success is-size-5 has-text-danger"
-              id="gastos" id="balance-expense">-$0</p>
+            id="balance-expense">-$0</p>
           </div>
 
           <div class="columns is-mobile is-vcentered">
             <p class="level-left is-size-4 pl-3 has-text-weight-normal">Total</p>
-            <p class="column  has-text-right has-text-weight-medium is-size-5" id="balance-total" id="balance-total">$0
+            <p class="column  has-text-right has-text-weight-medium is-size-5"  id="balance-total">$0
             </p>
           </div>
           <!------------------- FIN BALANCE ----------------->
@@ -215,7 +215,7 @@
   </section>
   <!--------------------------- INICIA SECCIÓN NUEVA OPERACIÓN -------------------------->
   <!--------------------- CREAR NUEVA OPERACIÓN /branch nueva operacion --------------->
-  <section class="container pt-5 hidden" id="section-new">
+  <section class="container pt-5 hidden" id="section-new-operation">
     <article class="columns">
       <div class="column is-8 is-offset-2">
         <div class="box">
@@ -267,24 +267,24 @@
     <!----------------------------- TERMINA CREAR NUEVA OPERACIÓN --------------------------->
   </section>
   <!----------------------- INICIA SECCION EDITAR OPERACIÓN ------------------------------>
-  <section class="container pt-5 hidden" id="section-edit">
+  <section class="container pt-5 hidden" id="section-edit-operation">
     <div class="columns">
       <div class="column is-8 is-offset-2">
         <article class="box">
           <h2 class=" is-size-2 has-text-weight-bold">Editar Operación</h2>
           <article class="field mt-6">
             <label for="input-description-edit" class="label">Descripción</label>
-            <input class="input" id="input-editar-descripcion" type="text" placeholder="Ingrese descripción">
+            <input class="input" id="input-description-edit" type="text" placeholder="Ingrese descripción">
           </article>
           <article class="field">
             <label for="input-amount-edit" class="label">Monto</label>
-            <input class="input " id="input-editar-monto" type="number" placeholder="Ingrese monto">
+            <input class="input " id="input-amount-edit" type="number" placeholder="Ingrese monto">
           </article>
           <article class="field">
             <label for="input-type-edit" class="label">Tipo</label>
             <div class="control">
               <div class="select is-fullwidth">
-                <select id="input-editar-tipo">
+                <select id="input-type-edit">
                   <option value="gasto">Gasto</option>
                   <option value="ganancia">Ganancia</option>
                 </select>
@@ -331,7 +331,7 @@
               <input class="input" type="text" name="" id="input-category">
             </div>
             <div class="control">
-              <button class="button button is-primary" id="btn-add-category" aria-label="Botón para nueva categoría">
+              <button class="button button is-primary" id="btn-add-category" onclick="addCategories()" aria-label="Botón para nueva categoría">
                 Agregar
               </button>
             </div>
@@ -415,7 +415,7 @@
     </div>
   </section>
   <!--------------------------------------------------------------------------- SESIÓN EDITAR CATEGORIA ------------------------------------------------------------------------>
-  <section class="container pt-5 hidden" id="edit-category">
+  <section class="container pt-5 hidden" id="section-edit-category">
     <div class="columns is-multiline">
       <div class="column is-8-widescreen is-10-desktop is-offset-2-widescreen is-offset-1-desktop">
         <article class="box">
