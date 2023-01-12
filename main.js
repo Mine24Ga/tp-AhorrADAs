@@ -84,3 +84,37 @@ menuBurger.addEventListener("click", () => {
     menuBurger.classList.toggle("is-active");
     menuNavbar.classList.toggle("is-active");
 });
+
+
+//Boton balance
+btnBalance.addEventListener('click', () => {
+    seccionBalance.style.display = 'block'
+    seccionCategorias.style.display = 'none'
+    seccionReportes.style.display = 'none'
+    seccionNuevaOperacion.style.display = 'none'
+    seccionEditarOperacion.style.display = 'none'
+    seccionEditarCategoria.style.display = 'none'
+  })
+  
+  //Botón categorias
+  btnCategorias.addEventListener('click', () => {
+    seccionBalance.style.display = 'none'
+    seccionCategorias.style.display = 'block'
+    seccionReportes.style.display = 'none'
+    seccionNuevaOperacion.style.display = 'none'
+    seccionEditarOperacion.style.display = 'none'
+    seccionEditarCategoria.style.display = 'none'
+  })
+  
+  //Botón reportes
+  btnReportes.addEventListener('click', () => {
+    seccionBalance.style.display = 'none'
+    seccionCategorias.style.display = 'none'
+    seccionReportes.style.display = 'block'
+    seccionNuevaOperacion.style.display = 'none'
+    seccionEditarOperacion.style.display = 'none'
+    seccionEditarCategoria.style.display = 'none'
+   
+  })
+
+
