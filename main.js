@@ -149,3 +149,14 @@ btnCancelEdit.addEventListener("click", () => {
 /*Botones para editar o eliminar en página balance
 const btnEliminarOperacion = document.getElementById('btn-eliminar-operacion');
 const btnEditarOperacion = document.getElementById('btn-editar-operation');*/
+
+//Botón para ocultar y mostrar los filtros
+btnHideFilters.addEventListener('click', () => {
+  if (btnHideFilters.innerText === 'Ocultar filtros') {
+    btnHideFilters.innerText = 'Mostrar filtros'
+    filters.style.display = 'none'
+  } else {
+    btnHideFilters.innerText = 'Ocultar filtros'
+    filters.style.display = 'block'
+  }
+});
