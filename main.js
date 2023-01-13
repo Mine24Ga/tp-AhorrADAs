@@ -259,14 +259,14 @@ const addBalanceOperation = (operations) => {
           </div>
 
           <div class="column is-3-tablet is-6-mobile has-text-right-mobile">
-            <span class="tag is-info is-light is-rounded is-size-6">${operations[i].categoria}</span>
+            <span class="tag is-info is-light  is-size-6">${operations[i].categoria}</span>
           </div>
 
           <div class="column is-2-tablet has-text-grey is-hidden-mobile has-text-left-tablet is-size-6">
           ${operations[i].fecha}
           </div>
           
-          <div class="column is-2 has-text-right is-size-6 ${operations[i].tipo === 'ganancia' ? 'tag is-primary is-light is-rounded' : 'tag is-danger is-light is-rounded'}"> $${operations[i].monto}
+          <div class="column is-2 has-text-right is-size-6 ${operations[i].tipo === 'ganancia' ? 'tag is-primary is-light ' : 'tag is-danger is-light '}"> $${operations[i].monto}
           </div>
 
           <div class="column is-2-tablet has-text-right">
