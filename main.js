@@ -1,3 +1,4 @@
+//OBTENER ELEMENTO DEL DOM CON EL ID.
 /*--------------------------------- BOTONES DEL HEADER ------------------------------------*/
 const btnBalance = document.getElementById("btn-balance");
 const btnCategories = document.getElementById("btn-categories");
@@ -92,13 +93,14 @@ const totalMonthReport= document.getElementById("total-month-reports");
 
 _______________________________________________________________________________________________
 /*----------------------------------------- EVENTOS -----------------------------------------*/
+/*Este evento se utiliza para mostrar y ocultar un menú de navegación al hacer clic en un botón con el ícono de una hamburguesa. Al hacer clic en el botón, se agrega la clase "is-active" al botón y al menú de navegación, lo que hace que se muestren en pantalla. Al hacer clic de nuevo en el botón, se elimina la clase "is-active" de ambos elementos, lo que hace que se oculten. */
 //Menú hamburguesa
 menuBurger.addEventListener("click", () => {
   menuBurger.classList.toggle("is-active");
   menuNavbar.classList.toggle("is-active");
 });
 
-//Vistas
+/*Este evento se utiliza para mostrar la sección de balance cuando el usuario hace clic en el botón de balance. Cuando se hace clic en el botón, se establece la propiedad de visualización de la sección de balance en "block" para mostrarla, y se establece la propiedad de visualización de las otras secciones en "none" para ocultarlas. lo mismo se repite con el resto de las vistas. */
 //Boton balance
 btnBalance.addEventListener("click", () => {
   sectionBalance.style.display = "block";
@@ -163,7 +165,7 @@ btnHideFilters.addEventListener('click', () => {
 
 
 /*-------------------------------------- OPERACIONES ----------------------------------------*/
-//Input fecha 
+//Esta función se utiliza para obtener la fecha actual en un formato específico (AAAA-MM-DD). 
 const date = () => {
   let date = new Date();
   let day = date.getDate();
@@ -178,7 +180,7 @@ inputDate.value = date();
 inputEditDate.value = inputDate.value;
 filterDate.value = inputDate.value;
 
-//generar id
+//La función generateId() se utiliza para generar un identificador único. Esto se hace combinando un valor aleatorio generado con el tiempo actual.
 const generateId = () => {
   let p1 = Math.floor(Math.random() * 0x10000);
   let p2 = new Date().getTime();
@@ -211,7 +213,7 @@ if (operations == 0){
 let operations = [];
 let balanceView = [];
 
-
+/*Esta función es un evento listener que se ejecuta cuando el usuario hace click en el botón "Agregar". Esto desencadena una serie de acciones, como la generación de un ID, el almacenamiento de los datos de la operación en el almacenamiento local, la actualización del balance de la operación y la actualización de la interfaz de usuario. Finalmente, regresa a la vista de balance ocultando la vista de nueva operación. */
 //Botón para agregar operación (despuès de rellenar el formulario)
 btnAdd.addEventListener('click', () => {
 
@@ -241,7 +243,7 @@ btnAdd.addEventListener('click', () => {
   sectionNewOperation.style.display = 'none' 
 });
 
-
+/*Esta función se utiliza para mostrar las operaciones realizadas en una cuenta, recibe como parámetro el array de operaciones y genera una tarjeta por cada una de ellas mostrando los detalles de la operación (descripción, tipo, categoría, monto y fecha). Además, incluye 2 botones para editar y eliminar la operación. */
 //Mostrar operacion en balance      
 const addBalanceOperation = (operations) => {
   showOnStock.innerHTML = '';
@@ -270,8 +272,8 @@ const addBalanceOperation = (operations) => {
           </div>
 
           <div class="column is-2-tablet has-text-right">
-            <button class="button is-inverted tag is-link is-size-6" onclick="editarOperacion('${operations[i].id}')"><i class="fas fa-pen"></i></i></button>
-            <button class="button is-inverted tag is-danger is-size-6" onclick="eliminarOperacion('${operations[i].id}')"><i class="fas fa-trash-alt"></i></button>
+            <button class="button is-inverted tag is-link is-size-6" onclick="editOperation('${operations[i].id}')"><i class="fas fa-pen"></i></i></button>
+            <button class="button is-inverted tag is-danger is-size-6" onclick="deleteOperation('${operations[i].id}')"><i class="fas fa-trash-alt"></i></button>
           </div>
         </div>
       </div>
@@ -284,3 +286,61 @@ const addBalanceOperation = (operations) => {
 operations = JSON.parse(localStorage.getItem("storageOperations")) ?? operations;
 addBalanceOperation(operations);
 reviewOperations(operations)
+
+//EDITAR OPERACIONES
+/*Esta función editOperation se utiliza para editar los datos de una operación en particular. Cuando se hace clic en el botón Editar operación, los datos de la operación seleccionada se cargan en los campos de la sección Editar operación. Luego, al hacer clic en el botón Editar, estos datos se actualizan con los datos ingresados en los campos. Al final, los datos se almacenan en el almacenamiento local y se vuelve a la vista de balance. */
+let position;
+
+const editOperation = (operacion) => {
+
+  sectionBalance.style.display = 'none';
+  sectionEditOperation.style.display = 'block'
+
+  position = operations.findIndex((elem) => elem.id === operacion);
+
+  if (inputEditType.value === "gasto") {
+    inputEditAmount.value = Number(operations[position].monto) * -1;
+  }
+
+  inputEditDescription.value = operations[position].descripcion;
+  inputEditAmount.value = operations[position].monto;
+  inputEditType.value = operations[position].tipo;
+  inputEditCategory.value = operations[position].categoria;
+  inputEditDate.value = operations[position].fecha;
+
+
+  return position;
+};
+// Botón pencil para editar operación
+btnEditEdit.addEventListener("click", () => {
+  operations[position].descripcion = inputEditDescription.value;
+  operations[position].monto = inputEditAmount.value;
+  operations[position].tipo = inputEditType.value;
+  operations[position].categoria = inputEditCategory.value;
+  operations[position].fecha = inputEditDate.value;
+
+  
+  localStorage.setItem("storageOperations", JSON.stringify(operations));
+  addBalanceOperation(operations);
+
+  
+  //volver a la vista de balance
+  sectionBalance.style.display = 'block';
+  sectionEditOperation.style.display = 'none'
+});
+
+/*Esta función se utiliza para eliminar una operación de una lista de operaciones. Recibe el parámetro operación, busca el índice de la operación en la lista de operaciones, luego elimina la operación de la lista y actualiza el balance de la lista de operaciones. También almacena la lista de operaciones actualizada en el almacenamiento local. */
+//Eliminar Operaciones
+const deleteOperation = (operacion) => {
+
+  const value = operations.findIndex((elem) => elem.id === operacion);
+  
+  if (value >= 0) {
+    operations.splice(value, 1);
+    localStorage.setItem("storageOperations", JSON.stringify(operations));
+    addBalanceOperation(operations);
+    
+  }
+};
+
+
