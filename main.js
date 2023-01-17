@@ -343,4 +343,111 @@ const deleteOperation = (operacion) => {
   }
 };
 
+/*--------------------------------------- FILTROS ------------------------------------------- */
+/*Esta función se utiliza para filtrar un conjunto de operaciones por un tipo específico. Recibe como parámetros el tipo a filtrar y el conjunto de operaciones a filtrar, y devuelve una colección con todas las operaciones que cumplen con el filtro indicado. Lo mismo para el resto */
+//Filtro tipo
+const filterByType = (tipo, filteredOperations) => {
+  const result = filteredOperations.filter((filterOperation) => filterOperation.tipo === tipo);
+  return result;
+};
+
+//Filtro categoria
+const filterByCategory = (categoria, filteredOperations) => {
+  const result = filteredOperations.filter((filterOperation) => filterOperation.categoria === categoria);
+  return result;
+};
+
+//Filtro fecha
+const filterByGreaterOrEqualDate= (fecha, filteredOperations) => {
+  const result = filteredOperations.filter(
+      (filterOperation) => new Date(filterOperation.fecha).getTime() >= new Date(fecha).getTime());
+  return result;
+};
+
+//Filtro mas reciente/menos reciente
+const sortByLessAndMoreRecent = (filterOperation, orden) => {
+  let result
+  if (orden === 'mas-reciente') {
+      result = [...filterOperation].sort((a, b) => a.fecha > b.fecha ? 1 : -1)
+  } else {
+      result = [...filterOperation].sort((a, b) => a.fecha < b.fecha ? 1 : -1)
+  }
+  return result
+}
+
+//Filtro menor monto/mayor monto
+const sortByMajorAndMinorAmount = (filterOperation, orden) => {
+  let result
+  if (orden === 'mayor-monto') {
+      result = [...filterOperation].sort((a, b) => a.monto < b.monto ? 1 : -1)
+  } else {
+      result = [...filterOperation].sort((a, b) => a.monto > b.monto ? 1 : -1)
+  }
+  return result
+};
+
+//Filtro orden alfabetico A-Z/Z-A
+const sortFromAzAndZa = (filterOperation, orden) => {
+  let result
+  if (orden === 'a-z') {
+      result = [...filterOperation].sort((a, b) => a.descripcion > b.descripcion ? 1 : -1)
+  } else {
+      result = [...filterOperation].sort((a, b) => a.descripcion < b.descripcion ? 1 : -1)
+  }
+  return result
+};
+
+/* Esta función se utiliza para filtrar y ordenar un conjunto de operaciones. Recibe los parámetros de filtro (tipo, categoría, fecha y orden) y los aplica al conjunto de operaciones para devolver un conjunto de operaciones filtradas y ordenadas. Al final, se llama a la función addBalanceOperation para actualizar el balance con las operaciones filtradas.*/
+const filterDataOperations = () => {
+  const tipo = filterType.value;
+  const categoria = selectFilterCategories.value;
+  const fecha = filterDate.value;
+  const orden = filterSort.value;
+
+  let filteredOperations = [...operations];
+
+  if (tipo !== 'Todos') {
+    filteredOperations = filterByType(tipo, filteredOperations);
+  }
+
+  if (categoria !== 'Todos') {
+    filteredOperations = filterByCategory(categoria,filteredOperations);
+  }
+
+  filteredOperations = filterByGreaterOrEqualDate(fecha, filteredOperations);
+
+  switch (orden) {
+    case 'mas-reciente':
+      filteredOperations = sortByLessAndMoreRecent(filteredOperations, 'mas-reciente')
+        break;
+    case 'menos-reciente':
+      filteredOperations = sortByLessAndMoreRecent(filteredOperations, 'menos-reciente')
+        break;
+    case 'menor-monto':
+      filteredOperations = sortByMajorAndMinorAmount(filteredOperations, 'menor-monto')
+        break;
+    case 'mayor-monto':
+      filteredOperations = sortByMajorAndMinorAmount(filteredOperations, 'mayor-monto')
+        break;
+    case 'a-z':
+      filteredOperations = sortFromAzAndZa(filteredOperations, 'a-z')
+        break;
+    case 'z-a':
+      filteredOperations = sortFromAzAndZa(filteredOperations, 'z-a')
+        break;
+    default:
+        break;
+}
+
+addBalanceOperation(filteredOperations);
+
+
+}
+
+filterType.addEventListener("change", filterDataOperations);
+selectFilterCategories.addEventListener("change", filterDataOperations);
+filterDate.addEventListener('change', filterDataOperations);
+filterSort.addEventListener('change', filterDataOperations);
+
+
 
