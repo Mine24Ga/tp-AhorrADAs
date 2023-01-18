@@ -236,7 +236,8 @@ btnAdd.addEventListener('click', () => {
 
   resetForm();
   addBalanceOperation(takeOperations);
-  balanceHTML(takeOperations);
+  balanceHTML(takeOperations); 
+  filterDataOperations(takeOperations);
 
   //Volver a la vista de Balance
   sectionBalance.style.display = 'block'
@@ -322,6 +323,7 @@ btnEditEdit.addEventListener("click", () => {
   
   localStorage.setItem("storageOperations", JSON.stringify(operations));
   addBalanceOperation(operations);
+  filterDataOperations();
 
   
   //volver a la vista de balance
@@ -339,6 +341,7 @@ const deleteOperation = (operacion) => {
     operations.splice(value, 1);
     localStorage.setItem("storageOperations", JSON.stringify(operations));
     addBalanceOperation(operations);
+    filterDataOperations();
     
   }
 };
@@ -449,5 +452,53 @@ selectFilterCategories.addEventListener("change", filterDataOperations);
 filterDate.addEventListener('change', filterDataOperations);
 filterSort.addEventListener('change', filterDataOperations);
 
+/*----------------------------------- BALANCE ---------------------------*/
+//Toma una matriz de operaciones como argumento y devuelve un objeto con los totales de ganancias, gastos y el balance total.
+const balanceData = (operations) => {
+  return operations.reduce(
+    (balanceView, operacion) => {
+      
+      if (operacion.tipo === "ganancia") {
+        return {
+          ...balanceView,
+          ganancia: Number(balanceView.ganancia) + Number(operacion.monto),
+          total: Number(balanceView.total) + Number(operacion.monto),
+        };
+      }
+      if (operacion.tipo === "gasto") {
+        return {
+          ...balanceView,
+          gasto: Number(balanceView.gasto) + Number(operacion.monto),
+          total: Number(balanceView.total) + Number(operacion.monto),
+        };
+      }
+    },
+
+    {
+      ganancia: 0,
+      gasto: 0,
+      total: 0,
+    }
+   
+  );
+};
+// Pintar balance
+const balanceHTML = (operations) => {
+  const objBalance = balanceData(operations);
+
+  balanceTotal.classList.remove("has-text-danger", "has-text-success");
+
+  if (objBalance.total > 0) {
+    balanceTotal.classList.add("has-text-success");
+  }
+
+  if (objBalance.total < 0) {
+    balanceTotal.classList.add("has-text-danger");
+  }
+
+  balanceEarnings.innerHTML = `$${objBalance["ganancia"]}`;
+  balanceExpense.innerHTML = `$${objBalance["gasto"]}`;
+  balanceTotal.innerHTML = `$${objBalance["total"]}`;
+};
 
 
