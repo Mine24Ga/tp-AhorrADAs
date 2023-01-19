@@ -187,13 +187,22 @@ const generateId = () => {
   return `${p1}${p2}`;
 };
 
+let categories = [
+  { id: 0, name: "Servicios" },
+  { id: 1, name: "Trasporte" },
+  { id: 2, name: "Educación" }, 
+  { id: 3, name: "Salario" },
+  { id: 4, name: "Comida" },
+  { id: 5, name: "Salidas" },
+];
+
 
 //Formulario para agregar nueva operacion
 const resetForm = () => {
   inputDescription.value = "";
   inputAmount.value = 0;
   inputType.value = "gasto";
-  selectCategories.value = "";
+  selectCategories.value = categories[0].name;
   inputDate.value = date();
 };
 
@@ -500,5 +509,18 @@ const balanceHTML = (operations) => {
   balanceExpense.innerHTML = `$${objBalance["gasto"]}`;
   balanceTotal.innerHTML = `$${objBalance["total"]}`;
 };
+
+/*--------------------------------------- CATEGORIAS ----------------------------------------*/
+//Añadiendo categorias al local storage
+const addCategories = () => {
+  if (inputCategory.value != "") {
+    categories.push({ id: categories.length, name: inputCategory.value });
+    inputCategory.value = "";
+  }
+  localStorage.setItem('categorias', JSON.stringify(categories))
+  categories = JSON.parse(localStorage.getItem('categorias'))
+};
+
+
 
 
