@@ -98,14 +98,19 @@ const reportList = document.getElementById("report-list");
                                        EVENTOS 
 **********************************************************************************************/
 
-/*Este evento se utiliza para mostrar y ocultar un menú de navegación al hacer clic en un botón con el ícono de una hamburguesa. Al hacer clic en el botón, se agrega la clase "is-active" al botón y al menú de navegación, lo que hace que se muestren en pantalla. Al hacer clic de nuevo en el botón, se elimina la clase "is-active" de ambos elementos, lo que hace que se oculten. */
+/*Este evento se utiliza para mostrar y ocultar un menú de navegación al hacer clic en un botón con el ícono de una hamburguesa. 
+Al hacer clic en el botón, se agrega la clase "is-active" al botón y al menú de navegación,
+lo que hace que se muestren 
+en pantalla. Al hacer clic de nuevo en el botón, se elimina la clase "is-active" de ambos elementos, lo que hace que se oculten. */
 //Menú hamburguesa
 menuBurger.addEventListener("click", () => {
   menuBurger.classList.toggle("is-active");
   menuNavbar.classList.toggle("is-active");
 });
 
-/*Este evento se utiliza para mostrar la sección de balance cuando el usuario hace clic en el botón de balance. Cuando se hace clic en el botón, se establece la propiedad de visualización de la sección de balance en "block" para mostrarla, y se establece la propiedad de visualización de las otras secciones en "none" para ocultarlas. lo mismo se repite con el resto de las vistas. */
+/*Este evento se utiliza para mostrar la sección de balance cuando el usuario hace clic en el botón de balance. 
+Cuando se hace clic en el botón, se establece la propiedad de visualización de la sección de balance en "block" para mostrarla, 
+y se establece la propiedad de visualización de las otras secciones en "none" para ocultarlas. lo mismo se repite con el resto de las vistas. */
 //Boton balance
 btnBalance.addEventListener("click", () => {
   sectionBalance.style.display = "block";
@@ -192,7 +197,9 @@ btnHideFilters.addEventListener('click', () => {
   }
 });
 
-//actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría en el almacenamiento local y se muestra la sección de categorías. 
+/*actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, 
+el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría 
+en el almacenamiento local y se muestra la sección de categorías.*/
 //Botón editar categorías
 btnEditCategory.addEventListener("click", () => {
   categories[index].name = inputEditCategory.value;
@@ -207,7 +214,8 @@ btnEditCategory.addEventListener("click", () => {
   sectionCategory.style.display = 'block'
 });
 
-// Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta la sección de edición de categorías, mostrando la sección de categorías. 
+/* Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta 
+la sección de edición de categorías, mostrando la sección de categorías. */
 //Botón eliminar categorías
 btnCancelEditCategory.addEventListener('click', () => {
   addBalanceOperation(operations);
@@ -280,7 +288,10 @@ if (operations == 0){
 let operations = [];
 let balanceView = [];
 
-/*Esta función es un evento listener que se ejecuta cuando el usuario hace click en el botón "Agregar". Esto desencadena una serie de acciones, como la generación de un ID, el almacenamiento de los datos de la operación en el almacenamiento local, la actualización del balance de la operación y la actualización de la interfaz de usuario. Finalmente, regresa a la vista de balance ocultando la vista de nueva operación. */
+/*Esta función es un evento listener que se ejecuta cuando el usuario hace click en el botón "Agregar". 
+Esto desencadena una serie de acciones, como la generación de un ID, el almacenamiento de los datos 
+de la operación en el almacenamiento local, la actualización del balance de la operación y la actualización de la interfaz de usuario. 
+Finalmente, regresa a la vista de balance ocultando la vista de nueva operación. */
 //Botón para agregar operación (despuès de rellenar el formulario)
 btnAdd.addEventListener('click', () => {
 
@@ -312,7 +323,9 @@ btnAdd.addEventListener('click', () => {
   sectionNewOperation.style.display = 'none' 
 });
 
-/*Esta función se utiliza para mostrar las operaciones realizadas en una cuenta, recibe como parámetro el array de operaciones y genera una tarjeta por cada una de ellas mostrando los detalles de la operación (descripción, tipo, categoría, monto y fecha). Además, incluye 2 botones para editar y eliminar la operación. */
+/*Esta función se utiliza para mostrar las operaciones realizadas en una cuenta, recibe como parámetro el array de operaciones 
+y genera una tarjeta por cada una de ellas mostrando los detalles de la operación (descripción, tipo, categoría, monto y fecha). 
+Además, incluye 2 botones para editar y eliminar la operación. */
 //Mostrar operacion en balance      
 const addBalanceOperation = (operations) => {
   showOnStock.innerHTML = '';
@@ -357,7 +370,10 @@ addBalanceOperation(operations);
 reviewOperations(operations)
 
 //EDITAR OPERACIONES
-/*Esta función editOperation se utiliza para editar los datos de una operación en particular. Cuando se hace clic en el botón Editar operación, los datos de la operación seleccionada se cargan en los campos de la sección Editar operación. Luego, al hacer clic en el botón Editar, estos datos se actualizan con los datos ingresados en los campos. Al final, los datos se almacenan en el almacenamiento local y se vuelve a la vista de balance. */
+/*Esta función editOperation se utiliza para editar los datos de una operación en particular. Cuando se hace clic en el botón 
+Editar operación, los datos de la operación seleccionada se cargan en los campos de la sección Editar operación. 
+Luego, al hacer clic en el botón Editar, estos datos se actualizan con los datos ingresados en los campos. 
+Al final, los datos se almacenan en el almacenamiento local y se vuelve a la vista de balance. */
 let position;
 
 const editOperation = (operacion) => {
@@ -381,7 +397,9 @@ const editOperation = (operacion) => {
   return position;
 };
 
-/*Esta función se utiliza para eliminar una operación de una lista de operaciones. Recibe el parámetro operación, busca el índice de la operación en la lista de operaciones, luego elimina la operación de la lista y actualiza el balance de la lista de operaciones. También almacena la lista de operaciones actualizada en el almacenamiento local. */
+/*Esta función se utiliza para eliminar una operación de una lista de operaciones. Recibe el parámetro operación, 
+busca el índice de la operación en la lista de operaciones, luego elimina la operación de la lista y actualiza el balance 
+de la lista de operaciones. También almacena la lista de operaciones actualizada en el almacenamiento local. */
 //Eliminar Operaciones
 const deleteOperation = (operacion) => {
 
@@ -399,7 +417,9 @@ const deleteOperation = (operacion) => {
 
 
 /*--------------------------------------- FILTROS ------------------------------------------- */
-/*Esta función se utiliza para filtrar un conjunto de operaciones por un tipo específico. Recibe como parámetros el tipo a filtrar y el conjunto de operaciones a filtrar, y devuelve una colección con todas las operaciones que cumplen con el filtro indicado. Lo mismo para el resto */
+/*Esta función se utiliza para filtrar un conjunto de operaciones por un tipo específico. Recibe como parámetros 
+el tipo a filtrar y el conjunto de operaciones a filtrar, y devuelve una colección con todas las operaciones que cumplen con el filtro indicado. 
+Lo mismo para el resto */
 //Filtro tipo
 const filterByType = (tipo, filteredOperations) => {
   const result = filteredOperations.filter((filterOperation) => filterOperation.tipo === tipo);
@@ -452,7 +472,9 @@ const sortFromAzAndZa = (filterOperation, orden) => {
   return result
 };
 
-/* Esta función se utiliza para filtrar y ordenar un conjunto de operaciones. Recibe los parámetros de filtro (tipo, categoría, fecha y orden) y los aplica al conjunto de operaciones para devolver un conjunto de operaciones filtradas y ordenadas. Al final, se llama a la función addBalanceOperation para actualizar el balance con las operaciones filtradas.*/
+/* Esta función se utiliza para filtrar y ordenar un conjunto de operaciones. Recibe los parámetros de filtro 
+(tipo, categoría, fecha y orden) y los aplica al conjunto de operaciones para devolver un conjunto de operaciones filtradas y ordenadas. 
+Al final, se llama a la función addBalanceOperation para actualizar el balance con las operaciones filtradas.*/
 const filterDataOperations = () => {
   const tipo = filterType.value;
   const categoria = selectFilterCategories.value;
@@ -555,7 +577,8 @@ const balanceHTML = (operations) => {
   balanceTotal.innerHTML = `$${objBalance["total"]}`;
 };
 
-//muestra el monto de cada operacion individualmente cuando es llamada por los filtros, pero falta acomodar para que muestre la suma total de la tabla de operaciones, y que se muestre al momento de hacer la operacion para no recargar la pagina. 
+/*muestra el monto de cada operacion individualmente cuando es llamada por los filtros, pero falta acomodar para que muestre 
+la suma total de la tabla de operaciones, y que se muestre al momento de hacer la operacion para no recargar la pagina. */
 
 
 /*--------------------------------------- CATEGORIAS ----------------------------------------*/
@@ -582,7 +605,8 @@ const editCategory = (category) => {
   return index
 };
 
-//Recibe como parámetro la categoría a eliminar y busca su índice en la lista de categorías. Si el índice existe, se elimina la categoría de la lista y se actualiza el almacenamiento local con la nueva lista de categorías. 
+/*Recibe como parámetro la categoría a eliminar y busca su índice en la lista de categorías. Si el índice existe, se elimina 
+la categoría de la lista y se actualiza el almacenamiento local con la nueva lista de categorías.*/
 //Eliminar categorías
 const removeCategory = (category) => {
   const value = categories.findIndex((e) => e.id == category);
@@ -597,7 +621,8 @@ const removeCategory = (category) => {
 };
 
 
-//Esta función se utiliza para agregar categorías a una lista HTML. Recorre una lista de categorías y genera una sección HTML para cada una de ellas, agregando botones para editar y eliminar cada categoría.
+/*Esta función se utiliza para agregar categorías a una lista HTML. Recorre una lista de categorías y genera una sección 
+HTML para cada una de ellas, agregando botones para editar y eliminar cada categoría.*/
 const addHtmlCategories = () => {
   categoryList.innerHTML = "";
   let markCategories= "";
@@ -622,7 +647,9 @@ const addHtmlCategories = () => {
   categoryList.innerHTML = markCategories;
 };
 
-//obtener una lista de categorías guardadas en el almacenamiento local del navegador. Primero, comprueba si hay algo guardado en el almacenamiento local con la clave 'categorías'. Si hay algo guardado, se convierte en un objeto JSON y se devuelve. Si no hay nada guardado, se devuelve una lista vacía.
+/*obtener una lista de categorías guardadas en el almacenamiento local del navegador. Primero, comprueba si hay algo guardado 
+en el almacenamiento local con la clave 'categorías'. Si hay algo guardado, se convierte en un objeto JSON y se devuelve. 
+Si no hay nada guardado, se devuelve una lista vacía.*/
 const categoriesPrint = () => {
   let savedList = localStorage.getItem('categorias');
   
@@ -633,7 +660,8 @@ const categoriesPrint = () => {
 }
 categoriesPrint()
 
-//llenar los elementos HTML selectCategories, selectFilterCategories e inputEditCategory con las categorías almacenadas en el arreglo categories. Esto permite al usuario seleccionar una categoría para filtrar los elementos de la lista.
+/*llenar los elementos HTML selectCategories, selectFilterCategories e inputEditCategory con las categorías almacenadas 
+en el arreglo categories. Esto permite al usuario seleccionar una categoría para filtrar los elementos de la lista.*/
 const setCategoriesBySelect = () => {
   selectCategories.innerHTML = `<option value="Todas">Todas</option>`;
   selectFilterCategories.innerHTML = `<option value="Todas">Todas</option>`;
@@ -692,7 +720,9 @@ const showReportList = (operations) => {
       monthTotals: [],
     };
     
-    //calcular el balance de una categoría de operaciones. Recorre una lista de categorías y luego recorre una lista de operaciones para calcular el gasto y la ganancia de cada categoría. Luego, calcula el balance de cada categoría y lo agrega a una lista de informes generales de categorías. Esta lista se almacena en la sección de informes de categorías totales.
+    /*calcular el balance de una categoría de operaciones. Recorre una lista de categorías y luego recorre una lista de operaciones 
+    para calcular el gasto y la ganancia de cada categoría. Luego, calcula el balance de cada categoría y lo agrega a una lista 
+    de informes generales de categorías. Esta lista se almacena en la sección de informes de categorías totales.*/
     let generalReportsCategories = [];
     categories.forEach((category) => {
         let itemReport = {
@@ -720,7 +750,8 @@ const showReportList = (operations) => {
  let biggerExpense = getMaximunValuesCategory("gasto");
  let biggerBalance = getMaximunValuesCategory("balance");
   
-//agregar al objeto reportingSections los datos de las categorías con mayor ganancia, gasto y balance. Estos datos se agregan al array summary del objeto reportingSections. Al final de la función se llama a la función paintReport() para pintar el reporte.
+/*agregar al objeto reportingSections los datos de las categorías con mayor ganancia, gasto y balance. Estos datos se agregan 
+al array summary del objeto reportingSections. Al final de la función se llama a la función paintReport() para pintar el reporte.*/
  reportingSections.summary.push({
     title: "Categoría con mayor ganancia",
     category: biggerGain.category,
@@ -740,7 +771,10 @@ const showReportList = (operations) => {
   paintReport();
 };
 
-//obtener el valor máximo de un campo específico en un conjunto de datos. Por ejemplo, si se pasara el campo "total" a la función getMaximunValuesCategory, devolvería el objeto con el valor máximo de "total" en el conjunto de datos reportingSections.categoryTotals. Lo mismo ocurre con la función getMaximunValuesMonth, que devolvería el objeto con el valor máximo de "total" en el conjunto de datos reportingSections.monthTotals.
+/*obtener el valor máximo de un campo específico en un conjunto de datos. Por ejemplo, si se pasara el campo "total" a la función 
+getMaximunValuesCategory, devolvería el objeto con el valor máximo de "total" en el conjunto de datos reportingSections.categoryTotals. 
+Lo mismo ocurre con la función getMaximunValuesMonth, que devolvería el objeto con el valor máximo de "total" en el conjunto de datos 
+reportingSections.monthTotals.*/
 const getMaximunValuesCategory = (campo) => {
     return reportingSections.categoryTotals.reduce((prev, current) =>
       prev[campo] > current[campo] ? prev : current
@@ -753,7 +787,8 @@ const getMaximunValuesMonth = (campo) => {
     );
   }; 
 
-  //Esta función se utiliza para generar un informe de categorías, un informe de resumen y un informe mensual. Esta función recorre los datos de los informes de categorías, resumen y mensuales y los agrega al DOM para que el usuario pueda verlos.
+  /*Esta función se utiliza para generar un informe de categorías, un informe de resumen y un informe mensual. 
+  Esta función recorre los datos de los informes de categorías, resumen y mensuales y los agrega al DOM para que el usuario pueda verlos.*/
   paintReport = () => {
     totalCategoryReport.innerHTML = "";
     reportingSections.categoryTotals.forEach((category) => {
@@ -803,7 +838,9 @@ const getMaximunValuesMonth = (campo) => {
   };
 
 
-  //Esta función se utiliza para generar un informe mensual de ganancias y gastos. Recorre una lista de operaciones y calcula los totales de ganancias y gastos para cada mes. Luego, encuentra el mes con la mayor ganancia y el mes con el mayor gasto. Esta información se almacena en una sección de informes para su uso posterior.
+  /*Esta función se utiliza para generar un informe mensual de ganancias y gastos. Recorre una lista de operaciones y calcula 
+  los totales de ganancias y gastos para cada mes. Luego, encuentra el mes con la mayor ganancia y el mes con el mayor gasto. 
+  Esta información se almacena en una sección de informes para su uso posterior.*/
   const reportsPerMonth = () => {
     let monthTotals = [];
     for (let mes = 0; mes <= 12; mes++) {
