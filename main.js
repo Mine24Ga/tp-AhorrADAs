@@ -515,12 +515,123 @@ const balanceHTML = (operations) => {
 const addCategories = () => {
   if (inputCategory.value != "") {
     categories.push({ id: categories.length, name: inputCategory.value });
+    setCategoriesBySelect();
+    addHtmlCategories();
     inputCategory.value = "";
   }
   localStorage.setItem('categorias', JSON.stringify(categories))
   categories = JSON.parse(localStorage.getItem('categorias'))
 };
 
+//Editar categorías
+let index;
+const editCategory = (category) => {
+  sectionEditCategory.style.display = 'block'
+  sectionCategory.style.display = 'none'
+
+  index = categories.findIndex((e) => e.id === Number(category));
+  inputEditCategory.value = categories[index].name
+  return index
+};
+
+/*actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría en el almacenamiento local y se muestra la sección de categorías. */
+//Botón editar categorías
+btnEditCategory.addEventListener("click", () => {
+  categories[index].name = inputEditCategory.value;
+  localStorage.setItem("categorias", JSON.stringify(categories));
+
+  addHtmlCategories();
+  setCategoriesBySelect();
+  addBalanceOperation(operations);
+  balanceHTML(operations);
+ 
+  sectionEditCategory.style.display = 'none'
+  sectionCategory.style.display = 'block'
+});
+
+/*Recibe como parámetro la categoría a eliminar y busca su índice en la lista de categorías. Si el índice existe, se elimina la categoría de la lista y se actualiza el almacenamiento local con la nueva lista de categorías. */
+//Eliminar categorías
+const removeCategory = (category) => {
+  const value = categories.findIndex((e) => e.id == category);
+  
+  if (value >= 0) {
+    categories.splice(value, 1);
+   addHtmlCategories();
+   setCategoriesBySelect();
+
+    localStorage.setItem("categorias", JSON.stringify(categories));    
+  };
+};
+
+/* Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta la sección de edición de categorías, mostrando la sección de categorías. */
+//Botón eliminar categorías
+btnCancelEditCategory.addEventListener('click', () => {
+  addBalanceOperation(operations);
+  balanceHTML(operations);
+
+  sectionEditCategory.style.display = 'none'
+  sectionCategory.style.display = 'block'
+});
 
 
+
+//Esta función se utiliza para agregar categorías a una lista HTML. Recorre una lista de categorías y genera una sección HTML para cada una de ellas, agregando botones para editar y eliminar cada categoría.
+const addHtmlCategories = () => {
+  categoryList.innerHTML = "";
+  let markCategories= "";
+  categories.forEach((category) => {
+     
+    let nodo =
+    `<section class="mb-3">
+     <article class="columns is-vcentered is-mobile">
+      <div class="column">
+          <span class="tag is-info is-light is-size-6">${category.name}</span>
+      </div>
+      <div class="column is-narrow has-text">
+          <a href="#" class="button is-inverted tag is-link is-size-6" onclick="editCategory(${category.id})"><i class="fas fa-pen"></i></i></a>
+          <a href="#" class="button is-inverted tag is-danger is-size-6" onclick="removeCategory(${category.id})"><i class="fas fa-trash-alt"></i></a>
+          <p></p>
+      </div>
+      </article>
+    </section>`;
+
+    markCategories += nodo;
+  });
+  categoryList.innerHTML = markCategories;
+};
+
+//obtener una lista de categorías guardadas en el almacenamiento local del navegador. Primero, comprueba si hay algo guardado en el almacenamiento local con la clave 'categorías'. Si hay algo guardado, se convierte en un objeto JSON y se devuelve. Si no hay nada guardado, se devuelve una lista vacía.
+const categoriesPrint = () => {
+  let savedList = localStorage.getItem('categorias');
+  
+  if (savedList !== null) {
+    categories = JSON.parse(savedList)
+  } 
+  return categories
+}
+categoriesPrint()
+
+//llenar los elementos HTML selectCategories, selectFilterCategories e inputEditCategory con las categorías almacenadas en el arreglo categories. Esto permite al usuario seleccionar una categoría para filtrar los elementos de la lista.
+const setCategoriesBySelect = () => {
+  selectCategories.innerHTML = `<option value="Todas">Todas</option>`;
+  selectFilterCategories.innerHTML = `<option value="Todas">Todas</option>`;
+  inputEditCategory.innerHTML = "";
+
+  for (let i = 0; i < categories.length; i++) {
+    const filterCategories = `<option value="${categories[i].name}">${categories[i].name}</option>`
+    
+    selectFilterCategories.insertAdjacentHTML("beforeend", filterCategories);
+    selectCategories.insertAdjacentHTML("beforeend",filterCategories);
+    inputEditCategory.insertAdjacentHTML("beforeend", filterCategories);
+  };  
+};
+
+//Función de carga inicial 
+const main = () => {
+  setCategoriesBySelect();
+  addHtmlCategories ();
+  categoriesPrint()
+};
+
+main();
 
