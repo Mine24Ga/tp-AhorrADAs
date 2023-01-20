@@ -1,4 +1,4 @@
-//OBTENER ELEMENTO DEL DOM CON EL ID.
+/************************************************************************************************                           OBTENER ELEMENTO DEL DOM CON EL ID.**********************************************************************************************/
 /*--------------------------------- BOTONES DEL HEADER ------------------------------------*/
 const btnBalance = document.getElementById("btn-balance");
 const btnCategories = document.getElementById("btn-categories");
@@ -83,16 +83,19 @@ const btnCancelEditCategory = document.getElementById(
 const btnEditCategory = document.getElementById("btn-edit-category");
 const selectCategories = document.getElementById("category-select");
 
-/*---------------------------------------------- REPORTES --------------------------------- 
+/*---------------------------------------------- REPORTES --------------------------------- */
 const noReports = document.getElementById("no-reports");
 const withReports = document.getElementById("with-reports");
 const summaryReport = document.getElementById("report-summary");
 const totalCategoryReport = document.getElementById("total-category-reports");
 const totalMonthReport= document.getElementById("total-month-reports");
+const reportList = document.getElementById("report-list");
 
 
-_______________________________________________________________________________________________
-/*----------------------------------------- EVENTOS -----------------------------------------*/
+/********************************************************************************************* 
+                                       EVENTOS 
+**********************************************************************************************/
+
 /*Este evento se utiliza para mostrar y ocultar un menú de navegación al hacer clic en un botón con el ícono de una hamburguesa. Al hacer clic en el botón, se agrega la clase "is-active" al botón y al menú de navegación, lo que hace que se muestren en pantalla. Al hacer clic de nuevo en el botón, se elimina la clase "is-active" de ambos elementos, lo que hace que se oculten. */
 //Menú hamburguesa
 menuBurger.addEventListener("click", () => {
@@ -129,6 +132,8 @@ btnReports.addEventListener("click", () => {
   sectionNewOperation.style.display = "none";
   sectionEditOperation.style.display = "none";
   sectionEditCategory.style.display = "none";
+  filterDataOperations();
+  showReportList(operations);
   
 });
 
@@ -152,6 +157,28 @@ btnCancelEdit.addEventListener("click", () => {
 const btnEliminarOperacion = document.getElementById('btn-eliminar-operacion');
 const btnEditarOperacion = document.getElementById('btn-editar-operacion');
 
+
+// Botón pencil para editar operación
+btnEditEdit.addEventListener("click", () => {
+  operations[position].descripcion = inputEditDescription.value;
+  operations[position].monto = inputEditAmount.value;
+  operations[position].tipo = inputEditType.value;
+  operations[position].categoria = inputEditCategory.value;
+  operations[position].fecha = inputEditDate.value;
+
+  
+  localStorage.setItem("storageOperations", JSON.stringify(operations));
+  addBalanceOperation(operations);
+  balanceHTML(operations);
+  filterDataOperations();
+
+  
+  //volver a la vista de balance
+  sectionBalance.style.display = 'block';
+  sectionEditOperation.style.display = 'none'
+});
+
+
 //Botón para ocultar y mostrar los filtros
 btnHideFilters.addEventListener('click', () => {
   if (btnHideFilters.innerText === 'Ocultar filtros') {
@@ -163,6 +190,35 @@ btnHideFilters.addEventListener('click', () => {
   }
 });
 
+//actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría en el almacenamiento local y se muestra la sección de categorías. 
+//Botón editar categorías
+btnEditCategory.addEventListener("click", () => {
+  categories[index].name = inputEditCategory.value;
+  localStorage.setItem("categorias", JSON.stringify(categories));
+
+  addHtmlCategories(categories);
+  setCategoriesBySelect(categories);
+  addBalanceOperation(operations);
+  balanceHTML(operations);
+ 
+  sectionEditCategory.style.display = 'none'
+  sectionCategory.style.display = 'block'
+});
+
+// Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta la sección de edición de categorías, mostrando la sección de categorías. 
+//Botón eliminar categorías
+btnCancelEditCategory.addEventListener('click', () => {
+  addBalanceOperation(operations);
+  balanceHTML(operations);
+
+  sectionEditCategory.style.display = 'none'
+  sectionCategory.style.display = 'block'
+});
+
+
+/********************************************************************************************
+                                     FUNCIONALIDADES                                     
+ *******************************************************************************************/
 
 /*-------------------------------------- OPERACIONES ----------------------------------------*/
 //Esta función se utiliza para obtener la fecha actual en un formato específico (AAAA-MM-DD). 
@@ -247,6 +303,7 @@ btnAdd.addEventListener('click', () => {
   addBalanceOperation(takeOperations);
   balanceHTML(takeOperations); 
   filterDataOperations(takeOperations);
+  
 
   //Volver a la vista de Balance
   sectionBalance.style.display = 'block'
@@ -321,25 +378,6 @@ const editOperation = (operacion) => {
 
   return position;
 };
-// Botón pencil para editar operación
-btnEditEdit.addEventListener("click", () => {
-  operations[position].descripcion = inputEditDescription.value;
-  operations[position].monto = inputEditAmount.value;
-  operations[position].tipo = inputEditType.value;
-  operations[position].categoria = inputEditCategory.value;
-  operations[position].fecha = inputEditDate.value;
-
-  
-  localStorage.setItem("storageOperations", JSON.stringify(operations));
-  addBalanceOperation(operations);
-  balanceHTML(operations);
-  filterDataOperations();
-
-  
-  //volver a la vista de balance
-  sectionBalance.style.display = 'block';
-  sectionEditOperation.style.display = 'none'
-});
 
 /*Esta función se utiliza para eliminar una operación de una lista de operaciones. Recibe el parámetro operación, busca el índice de la operación en la lista de operaciones, luego elimina la operación de la lista y actualiza el balance de la lista de operaciones. También almacena la lista de operaciones actualizada en el almacenamiento local. */
 //Eliminar Operaciones
@@ -466,9 +504,6 @@ filterDate.addEventListener('change', filterDataOperations);
 filterSort.addEventListener('change', filterDataOperations);
 
 
-
-
-
 /*----------------------------------- BALANCE ---------------------------*/
 //Toma una matriz de operaciones como argumento y devuelve un objeto con los totales de ganancias, gastos y el balance total.
 const balanceData = (operations) => {
@@ -521,7 +556,6 @@ const balanceHTML = (operations) => {
 //muestra el monto de cada operacion individualmente cuando es llamada por los filtros, pero falta acomodar para que muestre la suma total de la tabla de operaciones, y que se muestre al momento de hacer la operacion para no recargar la pagina. 
 
 
-
 /*--------------------------------------- CATEGORIAS ----------------------------------------*/
 //Añadiendo categorias al local storage
 const addCategories = () => {
@@ -546,21 +580,6 @@ const editCategory = (category) => {
   return index
 };
 
-//actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría en el almacenamiento local y se muestra la sección de categorías. 
-//Botón editar categorías
-btnEditCategory.addEventListener("click", () => {
-  categories[index].name = inputEditCategory.value;
-  localStorage.setItem("categorias", JSON.stringify(categories));
-
-  addHtmlCategories();
-  setCategoriesBySelect();
-  addBalanceOperation(operations);
-  balanceHTML(operations);
- 
-  sectionEditCategory.style.display = 'none'
-  sectionCategory.style.display = 'block'
-});
-
 //Recibe como parámetro la categoría a eliminar y busca su índice en la lista de categorías. Si el índice existe, se elimina la categoría de la lista y se actualiza el almacenamiento local con la nueva lista de categorías. 
 //Eliminar categorías
 const removeCategory = (category) => {
@@ -574,17 +593,6 @@ const removeCategory = (category) => {
     localStorage.setItem("categorias", JSON.stringify(categories));    
   };
 };
-
-// Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta la sección de edición de categorías, mostrando la sección de categorías. 
-//Botón eliminar categorías
-btnCancelEditCategory.addEventListener('click', () => {
-  addBalanceOperation(operations);
-  balanceHTML(operations);
-
-  sectionEditCategory.style.display = 'none'
-  sectionCategory.style.display = 'block'
-});
-
 
 
 //Esta función se utiliza para agregar categorías a una lista HTML. Recorre una lista de categorías y genera una sección HTML para cada una de ellas, agregando botones para editar y eliminar cada categoría.
@@ -648,3 +656,195 @@ const main = () => {
 main();
 
 
+/*----------------------------------------- REPORTES ----------------------------------------*/
+const addProfit = operations.some(e => e.tipo === 'ganancia');
+const subtractProfit = operations.some(e => e.tipo === 'gasto');
+
+//Objeto para almacenar los datos 
+let reportingSections = {
+  summary: [],
+  categoryTotals: [],
+  monthTotals: [],
+};
+
+//Mostrar y ocultar imagen o lista
+const showReportList = (operations) => {
+    for (let i = 0; i < operations.length; i++) {
+    //Cuando no haya operaciones, ocultar la lista y mostrar imagen.
+    if (operations === 0){
+      noReports.style.display = 'block'
+      withReports.style.display = 'none'
+    //Cuando haya operaciones, ocultar imagen y mostrar la lista.
+    } else {
+      noReports.style.display = 'none'
+      withReports.style.display = 'block'
+    }
+  }};
+
+  //generar un informe. Genera los datos para cada sección del informe (resumen, totales por categoría y totales por mes) y luego genera el informe en sí.
+  generateReport = ()=>{
+    //inicializamos nuestras secciones de reportes
+    reportingSections = {
+      summary: [],
+      categoryTotals: [],
+      monthTotals: [],
+    };
+    
+    //calcular el balance de una categoría de operaciones. Recorre una lista de categorías y luego recorre una lista de operaciones para calcular el gasto y la ganancia de cada categoría. Luego, calcula el balance de cada categoría y lo agrega a una lista de informes generales de categorías. Esta lista se almacena en la sección de informes de categorías totales.
+    let generalReportsCategories = [];
+    categories.forEach((category) => {
+        let itemReport = {
+         category: category.name,
+         ganancia: 0,
+         gasto: 0,
+         balance: 0,
+        };
+        operations.forEach((addBalanceOperation) => {
+            if (category.name === addBalanceOperation.categoria) {
+                if (addBalanceOperation.tipo === "gasto") {
+                    itemReport.gasto += parseFloat(addBalanceOperation.monto);
+                }
+                if (addBalanceOperation.tipo === "ganancia") {
+                    itemReport.ganancia += parseFloat(addBalanceOperation.monto);
+            }
+        }
+    });
+    itemReport.balance = itemReport.ganancia - itemReport.gasto;
+    generalReportsCategories.push(itemReport);
+ });
+ reportingSections.categoryTotals = generalReportsCategories;
+
+ let biggerGain = getMaximunValuesCategory("ganancia");
+ let biggerExpense = getMaximunValuesCategory("gasto");
+ let biggerBalance = getMaximunValuesCategory("balance");
+  
+//agregar al objeto reportingSections los datos de las categorías con mayor ganancia, gasto y balance. Estos datos se agregan al array summary del objeto reportingSections. Al final de la función se llama a la función paintReport() para pintar el reporte.
+ reportingSections.summary.push({
+    title: "Categoría con mayor ganancia",
+    category: biggerGain.category,
+    monto: biggerGain.ganancia,
+  });
+  reportingSections.summary.push({
+    title: "Categoría con mayor gasto",
+    category: biggerExpense.category,
+    monto: biggerExpense.gasto,
+  });
+  reportingSections.summary.push({
+    title: "Categoría con mayor balance",
+    category: biggerBalance.category,
+    monto: biggerBalance.balance,
+  });
+  
+  paintReport();
+};
+
+//obtener el valor máximo de un campo específico en un conjunto de datos. Por ejemplo, si se pasara el campo "total" a la función getMaximunValuesCategory, devolvería el objeto con el valor máximo de "total" en el conjunto de datos reportingSections.categoryTotals. Lo mismo ocurre con la función getMaximunValuesMonth, que devolvería el objeto con el valor máximo de "total" en el conjunto de datos reportingSections.monthTotals.
+const getMaximunValuesCategory = (campo) => {
+    return reportingSections.categoryTotals.reduce((prev, current) =>
+      prev[campo] > current[campo] ? prev : current
+    );
+  };
+
+const getMaximunValuesMonth = (campo) => {
+    return reportingSections.monthTotals.reduce((prev, current) =>
+      prev[campo] > current[campo] ? prev : current
+    );
+  }; 
+
+  //Esta función se utiliza para generar un informe de categorías, un informe de resumen y un informe mensual. Esta función recorre los datos de los informes de categorías, resumen y mensuales y los agrega al DOM para que el usuario pueda verlos.
+  paintReport = () => {
+    totalCategoryReport.innerHTML = "";
+    reportingSections.categoryTotals.forEach((category) => {
+      let node = document.createElement("div");
+      node.innerHTML = 
+      `<div class="columns has-text-weight-medium is-mobile">
+        <div class="column">${category.category}</div>
+        <div class="column">${category.ganancia}</div>
+        <div class="column">${category.gasto}</div>
+        <div class="column">${category.balance}</div>
+      </div>`;
+      totalCategoryReport.appendChild(node);
+    });
+  
+    summaryReport.innerHTML = "";
+    reportingSections.summary.forEach((resumen) => {
+      let node = document.createElement("div");
+      node.innerHTML = `
+      <div class="columns is-mobile">
+        <div class="column is-6 has-text-weight-semibold">${resumen.title}</div>
+        <div class="column is-3 has-text-right">
+          <span class="tag is-info is-light is-medium">${resumen.category}</span>
+        </div>
+        <div class="column is-3 has-text-weight-semibold has-text-right has-text-success">${resumen.monto}</div>
+      </div>
+    `;
+      summaryReport.appendChild(node);
+    });
+
+    totalMonthReport.innerHTML = "";
+    reportsPerMonth();
+  
+    
+    reportingSections.monthTotals.forEach((item) => {
+    let node = document.createElement("div");
+    node.innerHTML = `
+    <div class="columns has-text-weight-medium is-mobile">
+    <div class="column">${item.mesName}</div>
+    <div class="column">${item.ganancia}</div>
+    <div class="column">${item.gasto}</div>
+    <div class="column">${item.balance}</div>
+  </div>
+  `;
+    totalMonthReport.appendChild(node);
+   
+  });
+  };
+
+
+  //Esta función se utiliza para generar un informe mensual de ganancias y gastos. Recorre una lista de operaciones y calcula los totales de ganancias y gastos para cada mes. Luego, encuentra el mes con la mayor ganancia y el mes con el mayor gasto. Esta información se almacena en una sección de informes para su uso posterior.
+  const reportsPerMonth = () => {
+    let monthTotals = [];
+    for (let mes = 0; mes <= 12; mes++) {
+      let datex = new Date(2021, mes, 04);
+      let month = datex.toLocaleString("default", { month: "long" });
+      //console.log("EJEMPLO", mes, datex, month);
+      let itemReport = {
+        mes: mes,
+        mesName: month,
+        ganancia: 0,
+        gasto: 0,
+        balance: 0,
+      };
+      operations.forEach((showOperation) => {
+        let date = new Date(showOperation.fecha);
+        if (mes === date.getMonth()) {
+          if (showOperation.tipo === "gasto") {
+            itemReport.gasto += parseFloat(showOperation.monto);
+          }
+          if (showOperation.tipo === "ganancia") {
+            itemReport.ganancia += parseFloat(showOperation.monto);
+          }
+        }
+      });
+      itemReport.balance = itemReport.ganancia - itemReport.gasto;
+      if (itemReport.ganancia !== 0 || itemReport.gasto !== 0) {
+        monthTotals.push(itemReport);
+      }
+    }
+    reportingSections.monthTotals = monthTotals;
+ 
+
+    let biggerGainMonth = getMaximunValuesMonth("ganancia");
+    let biggerExpenseMonth = getMaximunValuesMonth("gasto");
+  
+    reportingSections.summary.push({
+      title: "Mes con mayor ganancia",
+      category: biggerGainMonth.mesName,
+      monto: biggerGainMonth.ganancia,
+    });
+    reportingSections.summary.push({
+      title: "Mes con mayor gasto",
+      category: biggerExpenseMonth.mesName,
+      monto: biggerExpenseMonth.gasto,
+    });
+  };
