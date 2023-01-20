@@ -332,6 +332,7 @@ btnEditEdit.addEventListener("click", () => {
   
   localStorage.setItem("storageOperations", JSON.stringify(operations));
   addBalanceOperation(operations);
+  balanceHTML(operations);
   filterDataOperations();
 
   
@@ -351,9 +352,11 @@ const deleteOperation = (operacion) => {
     localStorage.setItem("storageOperations", JSON.stringify(operations));
     addBalanceOperation(operations);
     filterDataOperations();
+    balanceHTML(operations);
     
   }
 };
+
 
 /*--------------------------------------- FILTROS ------------------------------------------- */
 /*Esta función se utiliza para filtrar un conjunto de operaciones por un tipo específico. Recibe como parámetros el tipo a filtrar y el conjunto de operaciones a filtrar, y devuelve una colección con todas las operaciones que cumplen con el filtro indicado. Lo mismo para el resto */
@@ -452,6 +455,7 @@ const filterDataOperations = () => {
 }
 
 addBalanceOperation(filteredOperations);
+balanceHTML(filteredOperations);
 
 
 }
@@ -460,6 +464,10 @@ filterType.addEventListener("change", filterDataOperations);
 selectFilterCategories.addEventListener("change", filterDataOperations);
 filterDate.addEventListener('change', filterDataOperations);
 filterSort.addEventListener('change', filterDataOperations);
+
+
+
+
 
 /*----------------------------------- BALANCE ---------------------------*/
 //Toma una matriz de operaciones como argumento y devuelve un objeto con los totales de ganancias, gastos y el balance total.
@@ -534,7 +542,7 @@ const editCategory = (category) => {
   return index
 };
 
-/*actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría en el almacenamiento local y se muestra la sección de categorías. */
+//actualizar el nombre de una categoría en el almacenamiento local. Cuando el usuario hace clic en el botón EditCategory, el nombre de la categoría se actualiza con el valor del campo de entrada EditCategory. Luego, se almacena la nueva categoría en el almacenamiento local y se muestra la sección de categorías. 
 //Botón editar categorías
 btnEditCategory.addEventListener("click", () => {
   categories[index].name = inputEditCategory.value;
@@ -549,7 +557,7 @@ btnEditCategory.addEventListener("click", () => {
   sectionCategory.style.display = 'block'
 });
 
-/*Recibe como parámetro la categoría a eliminar y busca su índice en la lista de categorías. Si el índice existe, se elimina la categoría de la lista y se actualiza el almacenamiento local con la nueva lista de categorías. */
+//Recibe como parámetro la categoría a eliminar y busca su índice en la lista de categorías. Si el índice existe, se elimina la categoría de la lista y se actualiza el almacenamiento local con la nueva lista de categorías. 
 //Eliminar categorías
 const removeCategory = (category) => {
   const value = categories.findIndex((e) => e.id == category);
@@ -563,7 +571,7 @@ const removeCategory = (category) => {
   };
 };
 
-/* Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta la sección de edición de categorías, mostrando la sección de categorías. */
+// Cuando se hace clic en el botón, se ejecuta la función addBalanceOperation para actualizar las operaciones y se oculta la sección de edición de categorías, mostrando la sección de categorías. 
 //Botón eliminar categorías
 btnCancelEditCategory.addEventListener('click', () => {
   addBalanceOperation(operations);
@@ -634,4 +642,5 @@ const main = () => {
 };
 
 main();
+
 
