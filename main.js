@@ -518,6 +518,10 @@ const balanceHTML = (operations) => {
   balanceTotal.innerHTML = `$${objBalance["total"]}`;
 };
 
+//muestra el monto de cada operacion individualmente cuando es llamada por los filtros, pero falta acomodar para que muestre la suma total de la tabla de operaciones, y que se muestre al momento de hacer la operacion para no recargar la pagina. 
+
+
+
 /*--------------------------------------- CATEGORIAS ----------------------------------------*/
 //Añadiendo categorias al local storage
 const addCategories = () => {
